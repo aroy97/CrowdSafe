@@ -1,0 +1,27 @@
+.yellow-bar{
+    background-color: #FFCB05;
+    height: 5px;
+}
+.logo{
+    padding-top: 5px;
+}
+.header-links{
+    padding-top: 22px;
+    ul{
+        list-style: none;
+        li{
+            float: left;
+            padding-right:20px;
+        }
+    }
+}
+.header-btn{
+    min-width: 80px;
+    min-height: 34px;
+    float: right;
+    margin-right: 16px;
+    margin-top: 15px;
+    background-color: #FFCB05;
+    border: none;
+    border-radius: 8%;
+}
