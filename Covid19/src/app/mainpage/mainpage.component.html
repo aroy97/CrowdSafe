@@ -1,1 +1,4 @@
-<p>mainpage works!</p>
+<fusioncharts *ngIf = "id == '000'" width="1400" height="800" type="india" [dataSource]="dataSource" (entityClick) = "gotoState($event, id)">
+</fusioncharts>
+<fusioncharts *ngIf = "id == '035'" width="1400" height="800" type="westbengal" [dataSource]="dataSource">
+</fusioncharts>
