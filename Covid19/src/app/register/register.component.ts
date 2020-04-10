@@ -3,6 +3,7 @@ import { AppService } from '../services/app.service';
 import { HttpResponse } from '@angular/common/http';
 import { SubscribeService } from '../services/subscribe.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { sha256, sha224 } from 'js-sha256';
 
 @Component({
   selector: 'app-register',
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
         payload = {
           "name": this.name,
           "user": this.phoneNumber,
-          "password": this.password
+          "password": sha256(this.password)
         }
         this.userloader = true;
         this.appservice
@@ -73,8 +74,7 @@ export class RegisterComponent implements OnInit {
       if(this.phoneNumber.length != 10) {
         alert("Phone number should be 10 digits");
         this.phoneNumber = "";
-      }
-      else{
+      } else {
         let payload: {};
         payload = {
           "user": this.phoneNumber
@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateOtp() {
-    if (this.otp == this.otpFromApi) {
+    if (sha256(this.otp) == this.otpFromApi) {
       this.registerflag = true;
     } else {
       alert("OTP does not match");
