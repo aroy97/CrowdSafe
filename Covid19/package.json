@@ -22,6 +22,7 @@
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
+    "js-sha256": "^0.9.0",
     "ngx-loading": "^8.0.0",
     "npm-font-source-sans-pro": "^1.0.2",
     "popper.js": "^1.16.1",

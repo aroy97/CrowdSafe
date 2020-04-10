@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
+import { NgxLoadingModule } from 'ngx-loading';8
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MainpageComponent } from './mainpage/mainpage.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
+    NgxLoadingModule.forRoot({}),
     FormsModule,
     HttpClientModule
   ],
