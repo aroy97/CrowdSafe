@@ -113,4 +113,8 @@ export class RegisterComponent implements OnInit {
     this.phoneNumber = "";
   }
 
+  navigateLogin() {
+    this.router.navigate(['../login'], { relativeTo: this.route }).catch();
+  }
+
 }
