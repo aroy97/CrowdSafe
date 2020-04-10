@@ -71,6 +71,7 @@ export class RegisterComponent implements OnInit {
 
   requestOtp() {
     if(this.phoneNumber != ""){
+      console.log(this.phoneNumber.length);
       if(this.phoneNumber.length != 10) {
         alert("Phone number should be 10 digits");
         this.phoneNumber = "";
