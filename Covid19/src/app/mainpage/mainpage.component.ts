@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SubscribeService } from '../services/subscribe.service';
+import { AppService } from '../services/app.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ResourceLoader } from '@angular/compiler';
 
 const dataset = [{
   "id": "035",
@@ -34,13 +38,32 @@ const dataset = [{
 export class MainpageComponent implements OnInit {
 
   dataSource: Object;
-  id: string = '000';
+  id: number = 0;
+  chartCreated: any;
 
-  constructor() {
+  constructor(
+    public appservice: AppService,
+    public subscribeservice: SubscribeService,
+    public router: Router,
+    private route: ActivatedRoute,
+  ) {
+    console.log(this.chartCreated);
+    this.subscribeservice.id.subscribe((id: any) => {
+      this.id = id;
+      console.log('Subscription');
+      // if (this.chartCreated){
+      //   console.log('Disposed');
+      //   this.chartCreated.dispose();
+      // }
+    });
+    if (this.id == undefined) {
+      this.id = 0;
+      console.log('Set');
+    };
     this.dataSource = {
       "chart": {
-      "caption": "Average Annual Population Growth",
-      "subcaption": " 1955-2015",
+      "caption": "Coronavirus Infection Risk Map",
+      "subcaption": "India",
       "numbersuffix": "%",
       "includevalueinlabels": "1",
       "labelsepchar": ": ",
@@ -51,18 +74,28 @@ export class MainpageComponent implements OnInit {
       "colorrange": colorrange,
       // Source data as JSON --> id represents countries of the world.
       "data": []
-      
-          }; // end of this.dataSource
+    };
    }
 
   ngOnInit() {
   }
 
   gotoState(event: any) {
+
     console.log(event['dataObj']['id']);
     this.id = (event['dataObj']['id']);
+    this.subscribeservice.setId(this.id);
     console.log(this.id);
+    this.router.navigate(['../home'], { relativeTo: this.route }).catch();
+    // location.reload();
+    // this.chartCreated.dispose();
+    
+  }
 
+  initializedMap(event: any) {
+    this.chartCreated = event.chart;
+    console.log(this.chartCreated);
+    
   }
 
 }
