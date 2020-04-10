@@ -1,4 +1,10 @@
 <ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: false }"></ngx-loading>
+<div class="register">
+    <div class="first_stage">
+        <form >
+            <input class="" type="text" [(ngModel)]="phoneNumber" placeholder="Enter Phone Number" [ngModelOptions]="{standalone: true}">
+        </form>
+    </div>
 <input class="" type="text" [(ngModel)]="name" placeholder="Enter Name" [ngModelOptions]="{standalone: true}">
 <input class="" type="text" [(ngModel)]="phoneNumber" placeholder="Enter Phone Number" [ngModelOptions]="{standalone: true}">
 <input class="" type="password" [(ngModel)]="password" placeholder="Enter Password" [ngModelOptions]="{standalone: true}">
@@ -7,3 +13,4 @@
 <button *ngIf = "otpValidate" (click) = "validateOtp()">Verify OTP</button>
 <button (click) = "registerbackend()">Register</button>
 <button *ngIf = "!otpValidate" (click) = "requestOtp()">Send OTP</button>
+</div>
