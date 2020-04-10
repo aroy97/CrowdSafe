@@ -3,7 +3,7 @@ import { AppService } from '../services/app.service';
 import { HttpResponse } from '@angular/common/http';
 import { SubscribeService } from '../services/subscribe.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { sha256, sha224 } from 'js-sha256';
+import { sha256 } from 'js-sha256';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerbackend() {
+  registerUser() {
     if(this.name != "" && this.phoneNumber != "" && this.password != "" && this.confirmPassword !=""){
       if(this.password != this.confirmPassword){
         alert("Passwords dont match!");
