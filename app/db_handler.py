@@ -10,6 +10,7 @@ class DBHandler:
         except ConnectionError:
             raise ConnectionError
         except Exception as e:
+            print(str(e))
             raise e
 
     def create_table(self, table_name, parameters):
@@ -25,8 +26,10 @@ class DBHandler:
     def execute_query(self, query):
         try:
             self.cursor.execute(query)
+            self.db.commit()
         except Exception as e:
             print(str(e))
+            self.db.rollback()
             raise ConnectionError
 
     def register(self, phone, pass_hash):
@@ -42,7 +45,7 @@ class DBHandler:
     def login(self, phone, pass_hash):
         status = 1
         result = "No Data"
-        query = 'SELECT password, token FROM user WHERE phone = "' + phone + '";'
+        query = 'SELECT password, token FROM user;' # WHERE phone = "' + phone + '";'
         try:
             self.execute_query(query)
         except ConnectionError:
