@@ -1,4 +1,10 @@
 <ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: false }"></ngx-loading>
+<div class="title" *ngIf = "!otpValidate">
+    Please enter your phone number to receive OTP for registration
+</div>
+<div class="title" *ngIf = "otpValidate">
+        Please enter the details below to complete the registration
+</div>
 <div class="register">
     <form class="form-horizontal">
         <div class="form-group">
