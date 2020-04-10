@@ -28,4 +28,9 @@ export class AppService {
     const url: string = `${this.BASE_URL}/message`;
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
+
+  async loginApi(credentials: any): Promise<any> {
+    const url: string = `${this.BASE_URL}/login`;
+    return this.http.post(url, credentials, this.httpOptions).toPromise();
+  }
 }
