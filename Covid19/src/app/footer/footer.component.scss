@@ -1,0 +1,29 @@
+.cwsf-footer{
+    background-color: #004C6C;
+    padding: 32px;
+    height: 120px;
+    .top-part{
+        .tag{
+            color: #FFCB05;
+            font-weight: 700;
+            font-size: 18px;
+            float: left;
+        }
+        .acronym{
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 18px;
+            float: right;
+        }
+    }
+    .bottom-part{
+        .copyright{
+            color: #ffffff;
+            float: left;
+        }
+        .legal{
+            color: #ffffff;
+            float: right;
+        }
+    }
+}
