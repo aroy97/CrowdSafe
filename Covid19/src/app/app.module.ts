@@ -18,6 +18,8 @@ import * as FusionMaps from "fusionmaps/fusioncharts.maps";
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import * as India from 'fusioncharts/maps/fusioncharts.india';
 import { HeatmapComponent } from './heatmap/heatmap.component';
+import { AboutComponent } from './about/about.component';
+import { SymptomsComponent } from './symptoms/symptoms.component';
 
 
 
@@ -31,7 +33,9 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
     LoginComponent,
     RegisterComponent,
     MainpageComponent,
-    HeatmapComponent
+    HeatmapComponent,
+    AboutComponent,
+    SymptomsComponent
   ],
   imports: [
     CommonModule,
