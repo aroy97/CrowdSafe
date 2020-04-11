@@ -3,6 +3,8 @@ import { SubscribeService } from '../services/subscribe.service';
 import { AppService } from '../services/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ResourceLoader } from '@angular/compiler';
+import { HttpResponse } from '@angular/common/http';
+import { StateData, StateMapData } from '../models/models';
 
 const dataset = [{
   "id": "035",
@@ -16,16 +18,16 @@ const dataset = [{
   "gradient": "1",
   "color":
   [{
-  "minvalue": "0.5",
-  "maxvalue": "1.0",
+  "minvalue": "20",
+  "maxvalue": "50",
   "color": "#FFD74D"
   }, {
-  "minvalue": "1.0",
-  "maxvalue": "2.0",
+  "minvalue": "50",
+  "maxvalue": "100",
   "color": "#FB8C00"
   }, {
-  "minvalue": "2.0",
-  "maxvalue": "3.0",
+  "minvalue": "100",
+  "maxvalue": "300",
   "color": "#E65100"
   }]
   };
@@ -40,31 +42,42 @@ export class MainpageComponent implements OnInit {
   dataSource: Object;
   id: number = 0;
   chartCreated: any;
+  error: boolean = false;
+  stateFullData: StateData[] = [];
+  stateMapFullData: StateMapData[] = [];
+
 
   constructor(
     public appservice: AppService,
     public subscribeservice: SubscribeService,
     public router: Router,
     private route: ActivatedRoute,
-  ) {
-    console.log(this.chartCreated);
-    this.subscribeservice.id.subscribe((id: any) => {
-      this.id = id;
-      console.log('Subscription');
-      // if (this.chartCreated){
-      //   console.log('Disposed');
-      //   this.chartCreated.dispose();
-      // }
-    });
-    if (this.id == undefined) {
-      this.id = 0;
-      console.log('Set');
-    };
+  ) {}
+
+  ngOnInit() {
+
+    this.appservice
+        .gatherDataApi()
+        .then((response: any) => {
+          // if (response.status != 200) {
+          //   this.error = true;
+          // } else {
+            console.log(response);
+            response.forEach((stateData: any) => {
+              let statemodel : StateData = new StateData(stateData);
+              let stateMapModel : StateMapData = new StateMapData(stateData);
+              this.stateFullData.push(statemodel);
+              this.stateMapFullData.push(stateMapModel);
+            });
+            console.log(this.stateFullData);
+            console.log(this.stateMapFullData);
+          // }
+        });
+
     this.dataSource = {
       "chart": {
       "caption": "Coronavirus Infection Risk Map",
       "subcaption": "India",
-      "numbersuffix": "%",
       "includevalueinlabels": "1",
       "labelsepchar": ": ",
       "entityFillHoverColor": "#FFF9C4",
@@ -73,16 +86,11 @@ export class MainpageComponent implements OnInit {
       // Aesthetics; ranges synced with the slider
       "colorrange": colorrange,
       // Source data as JSON --> id represents countries of the world.
-      "data": []
+      "data": this.stateMapFullData
     };
-   }
-
-  ngOnInit() {
   }
 
   gotoState(event: any) {
-
-    console.log(event['dataObj']['id']);
     this.id = (event['dataObj']['id']);
     this.subscribeservice.setId(this.id);
     console.log(this.id);

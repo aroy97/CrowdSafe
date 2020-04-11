@@ -33,4 +33,32 @@ export class AppService {
     const url: string = `${this.BASE_URL}/login`;
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
+
+  async gatherDataApi(): Promise<any> {
+    const url: string = `${this.BASE_URL}/infected`;
+    // return this.http.get(url, this.httpOptions).toPromise();
+    return [
+      {
+        "id" : "001",
+        "infected" : "30",
+        "deaths" : "10",
+        "recovered" : "20",
+        "tested" : "250"
+      },
+      {
+        "id" : "002",
+        "infected" : "95",
+        "deaths" : "10",
+        "recovered" : "20",
+        "tested" : "250"
+      },
+      {
+        "id" : "035",
+        "infected" : "150",
+        "deaths" : "10",
+        "recovered" : "20",
+        "tested" : "250"
+      }
+    ]
+  }
 }
