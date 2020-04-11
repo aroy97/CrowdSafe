@@ -24,7 +24,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginEnd="25dp"
                 android:layout_marginStart="25dp"
-                android:src="@drawable/styled_map_logo" />
+                android:src="@drawable/stylemapicon" />
 
             <TextView
                 android:id="@+id/gourmet_heading"
