@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppService {
 
-  private BASE_URL: string = "";
+  private BASE_URL: string = "http://723cc6b7.ngrok.io";
   private username: string = 'Covid19';
   private password: string = 'Covid19';
   private usernamePassword = `${this.username}:${this.password}`;
