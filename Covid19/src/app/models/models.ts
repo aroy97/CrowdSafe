@@ -4,7 +4,7 @@ export class StateData {
     infected: string;
     deaths: string;
     recovered: string;
-    tested: string;
+    active: string;
 
     constructor(data: any) {
         this.id = data['id'],
@@ -12,7 +12,7 @@ export class StateData {
         this.infected = data['infected'],
         this.deaths = data['deaths'],
         this.recovered = data['recovered'],
-        this.tested = data['tested']
+        this.active = (parseInt(data['infected'])-parseInt(data['deaths'])-parseInt(data['recovered'])).toString()
     }
 }
 

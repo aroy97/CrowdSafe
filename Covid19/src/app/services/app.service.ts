@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AppService {
 
   private BASE_URL: string = "";
-  private username: string = 'covid19';
-  private password: string = 'covid19';
+  private username: string = 'Covid19';
+  private password: string = 'Covid19';
   private usernamePassword = `${this.username}:${this.password}`;
   private httpOptions: any = ({
     headers: new HttpHeaders({
@@ -35,7 +35,7 @@ export class AppService {
   }
 
   async gatherDataApi(): Promise<any> {
-    const url: string = `${this.BASE_URL}/infected`;
+    const url: string = `${this.BASE_URL}/state_data`;
     // return this.http.get(url, this.httpOptions).toPromise();
     return [
       {

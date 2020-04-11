@@ -3,7 +3,7 @@
     height: 5px;
 }
 .header-first{
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     .logo{
         padding-top: 5px;
         padding-left: 10px;
@@ -36,4 +36,13 @@
         font-weight: 700;
         color: #004C6C;
     }
+}
+.header-title{
+    height: 40px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    background-color: #FFCB05;
+    color: #004C6C;
+    font-weight: 700;
+    text-align: center;
 }
