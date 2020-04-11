@@ -58,6 +58,27 @@ export class AppService {
         "deaths" : "10",
         "recovered" : "20",
         "tested" : "250"
+      },
+      {
+        "id" : "003",
+        "infected" : "1",
+        "deaths" : "0",
+        "recovered" : "0",
+        "tested" : "1"
+      },
+      {
+        "id" : "004",
+        "infected" : "29",
+        "deaths" : "1",
+        "recovered" : "0",
+        "tested" : "250"
+      },
+      {
+        "id" : "005",
+        "infected" : "60",
+        "deaths" : "1",
+        "recovered" : "0",
+        "tested" : "250"
       }
     ]
   }

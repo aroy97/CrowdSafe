@@ -1,3 +1,12 @@
 .india-map{
     margin-bottom: 150px;
+    .data-table{
+        padding-left: 8%;
+        table{
+            width: 100%;
+            td, th{
+                text-align: center;
+            }
+        }
+    }
 }
