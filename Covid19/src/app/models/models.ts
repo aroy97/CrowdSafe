@@ -29,6 +29,7 @@ export class StateMapData {
 }
 
 export enum IdToStateName {
+    '000' = 'India',
     '001' = 'Andaman and Nicobar Islands',
     '002' = 'Andhra Pradesh',
     '003' = 'Arunachal Pradesh',

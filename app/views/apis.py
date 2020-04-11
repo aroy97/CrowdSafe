@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 app.config['BASIC_AUTH_USERNAME'] = 'Covid19'
 app.config['BASIC_AUTH_PASSWORD'] = 'Covid19'
-app.config['BASIC_AUTH_FORCE'] = True
+app.config['BASIC_AUTH_FORCE'] = False
 basic_auth = BasicAuth(app)
 
 
