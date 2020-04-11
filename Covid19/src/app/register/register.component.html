@@ -1,1 +1,70 @@
-<p>register works!</p>
+<ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: false }"></ngx-loading>
+<div class="title" *ngIf = "!otpValidate">
+    Please enter your phone number to receive OTP for registration
+</div>
+<div class="title" *ngIf = "otpValidate">
+        Please enter the details below to complete the registration
+</div>
+<div class="register">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="phoneNumber">Phone Number:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" [(ngModel)]="phoneNumber" placeholder="Enter Phone Number" [ngModelOptions]="{standalone: true}">
+            </div>
+        </div>
+        <div class="form-group" *ngIf = "otpValidate">
+          <label class="control-label col-sm-2" for="name">Name:</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" [(ngModel)]="name" placeholder="Enter Name" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="form-group" *ngIf = "otpValidate">
+          <label class="control-label col-sm-2" for="pwd">Password:</label>
+          <div class="col-sm-10">          
+            <input class="form-control" type="password" [(ngModel)]="password" placeholder="Enter Password" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="form-group" *ngIf = "otpValidate">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-10">          
+                <input class="form-control" type="password" [(ngModel)]="confirmPassword" placeholder="Confirm Password" [ngModelOptions]="{standalone: true}">
+            </div>
+        </div>
+        <div class="form-group" *ngIf = "otpValidate">
+            <label class="control-label col-sm-2" for="otp">OTP:</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" [(ngModel)]="otp" placeholder="Enter OTP" [ngModelOptions]="{standalone: true}">
+            </div>
+        </div>
+        <div class="form-group" *ngIf = "otpValidate">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label><input type="checkbox" name="remember"> Remember me</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <button *ngIf = "!otpValidate" (click) = "requestOtp()" class="btn btn-default register-button">Send OTP</button>
+          </div>
+        </div>
+        <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+                <button *ngIf = "otpValidate" (click) = "validateOtp()" class="btn btn-default register-button">Verify OTP</button>
+            </div>
+        </div>
+        <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+                <button *ngIf = "registerflag" (click) = "registerbackend()" class="btn btn-default register-button">Register</button>
+            </div>
+        </div>
+    </form>
+    
+</div>
+<!-- <p>sdkjbfjvbfkgbfjgkbfg</p>
+<p>sdkjbfjvbfkgbfjgkbfg</p>
+<p>sdkjbfjvbfkgbfjgkbfg</p>
+<p>sdkjbfjvbfkgbfjgkbfg</p> -->
+
+<!-- <p>sdkjbfjvbfkgbfjgkbfg</p> -->

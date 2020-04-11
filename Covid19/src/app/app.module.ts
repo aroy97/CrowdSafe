@@ -10,6 +10,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionMaps from "fusionmaps/fusioncharts.maps";
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import * as India from 'fusioncharts/maps/fusioncharts.india';
+import { HeatmapComponent } from './heatmap/heatmap.component';
+
+
+
+FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
 
 @NgModule({
   declarations: [
@@ -17,15 +29,19 @@ import { RegisterComponent } from './register/register.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MainpageComponent,
+    HeatmapComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
+    NgxLoadingModule.forRoot({}),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FusionChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
