@@ -7,17 +7,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
   styleUrls: ['./heatmap.component.scss']
 })
 export class HeatmapComponent implements AfterViewInit {
-  // map: google.maps.Map;
-  // lat = 40.730610;
-  // lng = -73.935242;
-  // coordinates = new google.maps.LatLng(this.lat, this.lng);
-  // mapOptions: google.maps.MapOptions = {
-  //   center: this.coordinates,
-  //   zoom: 8,
-  // };
 
-
-  
   heatMapData = [
     {location: new google.maps.LatLng(22.573, 88.364), weight: 0.1},
     {location: new google.maps.LatLng(22.574, 88.365), weight: 0.2},
@@ -26,8 +16,6 @@ export class HeatmapComponent implements AfterViewInit {
     {location: new google.maps.LatLng(22.577, 88.368), weight: 1.5},
   ];
   kolkata = new google.maps.LatLng(22.5726, 88.3639);
-
-
   // marker = new google.maps.Marker({
   //   position: this.coordinates,
   //   map: this.map,
