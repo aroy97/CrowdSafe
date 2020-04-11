@@ -1,4 +1,4 @@
 <resources>
-<string name="app_name">Styled Map</string>
-<string name="title_activity_maps">Styled Map</string>
+    <string name="app_name">Styled Map</string>
+    <string name="title_activity_maps">Styled Map</string>
 </resources>
