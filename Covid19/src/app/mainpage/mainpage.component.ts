@@ -18,17 +18,45 @@ const dataset = [{
   "gradient": "1",
   "color":
   [{
-  "minvalue": "20",
-  "maxvalue": "50",
-  "color": "#FFD74D"
+  "minvalue": "0",
+  "maxvalue": "1",
+  "color": "#008000"
   }, {
-  "minvalue": "50",
+  "minvalue": "1",
   "maxvalue": "100",
-  "color": "#FB8C00"
+  "color": "#FFA07A"
   }, {
   "minvalue": "100",
-  "maxvalue": "300",
-  "color": "#E65100"
+  "maxvalue": "250",
+  "color": "#90EE90"
+  }, {
+  "minvalue": "250",
+  "maxvalue": "400",
+  "color": "#FFFFE0"
+  }, { 
+  "minvalue": "400",
+  "maxvalue": "600",
+  "color": "#FFFACD"
+  }, {
+  "minvalue": "600",
+  "maxvalue": "800",
+  "color": "#EEE8AA"
+  }, {
+  "minvalue": "800",
+  "maxvalue": "1000",
+  "color": "#FFA07A"
+  }, {
+  "minvalue": "1000",
+  "maxvalue": "1200",
+  "color": "#CD5C5C"
+  }, {
+  "minvalue": "1200",
+  "maxvalue": "1500",
+  "color": "#B22222"
+  }, {
+  "minvalue": "1500",
+  "maxvalue": "3000",
+  "color": "#8B0000"
   }]
   };
 
@@ -57,37 +85,36 @@ export class MainpageComponent implements OnInit {
   ngOnInit() {
 
     this.appservice
-        .gatherDataApi()
-        .then((response: any) => {
-          // if (response.status != 200) {
-          //   this.error = true;
-          // } else {
-            console.log(response);
-            response.forEach((stateData: any) => {
-              let statemodel : StateData = new StateData(stateData);
-              let stateMapModel : StateMapData = new StateMapData(stateData);
-              this.stateFullData.push(statemodel);
-              this.stateMapFullData.push(stateMapModel);
-            });
-            console.log(this.stateFullData);
-            console.log(this.stateMapFullData);
-          // }
+    .gatherDataApi()
+    .then((response: any) => {
+      // if (response.status != 200) {
+      //   this.error = true;
+      // } else {
+        console.log(response);
+        response.forEach((stateData: any) => {
+          let statemodel : StateData = new StateData(stateData);
+          let stateMapModel : StateMapData = new StateMapData(stateData);
+          this.stateFullData.push(statemodel);
+          this.stateMapFullData.push(stateMapModel);
         });
-
-    this.dataSource = {
-      "chart": {
-      "caption": "Coronavirus Infection Risk Map",
-      "subcaption": "India",
-      "includevalueinlabels": "1",
-      "labelsepchar": ": ",
-      "entityFillHoverColor": "#FFF9C4",
-      "theme": "fusion"
-      },
-      // Aesthetics; ranges synced with the slider
-      "colorrange": colorrange,
-      // Source data as JSON --> id represents countries of the world.
-      "data": this.stateMapFullData
-    };
+        console.log(this.stateFullData);
+        console.log(this.stateMapFullData);
+        this.dataSource = {
+          "chart": {
+          "caption": "Coronavirus Infection Risk Map",
+          "subcaption": "India",
+          "includevalueinlabels": "1",
+          "labelsepchar": ": ",
+          "entityFillHoverColor": "#FFF9C4",
+          "theme": "fusion"
+          },
+          // Aesthetics; ranges synced with the slider
+          "colorrange": colorrange,
+          // Source data as JSON --> id represents countries of the world.
+          "data": this.stateMapFullData
+        };
+      // }
+    });
   }
 
   gotoState(event: any) {
