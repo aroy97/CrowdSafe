@@ -1,6 +1,6 @@
 import http
 import json
-
+from flask_cors import CORS
 from flask import Flask, request
 from flask_basicauth import BasicAuth
 
@@ -8,6 +8,7 @@ from app.models.covid_19_india_scraper import WebScraper
 from app.models.db_handler import DBHandler
 
 app = Flask(__name__)
+CORS(app)
 app.config['BASIC_AUTH_USERNAME'] = 'Covid19'
 app.config['BASIC_AUTH_PASSWORD'] = 'Covid19'
 app.config['BASIC_AUTH_FORCE'] = True
