@@ -13,11 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:theme="@style/NewTheme">
+            android:theme="@style/NewTheme"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/NewTheme" />
+            android:theme="@style/NewTheme"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MapsActivityRaw"
             android:configChanges="orientation|screenSize"

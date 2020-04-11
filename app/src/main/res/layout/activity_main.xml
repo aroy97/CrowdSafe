@@ -20,13 +20,21 @@
             android:layout_height="200dp"
             android:src="@drawable/ic_location_on_black_24dp"
             android:tint="#3E0D6E" />
-        <TextView
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/checkLocation"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your location"
-            android:textColor="#3E0D6E"
+            android:text="Check location"
             android:fontFamily="@font/open_sans_semibold"
-            android:textSize="15sp" />
+            android:textSize="20sp"
+            android:padding="5dp"
+            android:textColor="#3E0D6E"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_location_on_black_24dp"
+            app:iconTint="#3E0D6E"
+            android:textAllCaps="false"
+            app:cornerRadius="5dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,14 +46,22 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:src="@drawable/ic_cloud_upload_black_24dp"
-            android:tint="#0075FF"/>
-        <TextView
+            android:tint="@color/colorAccent"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/enterPicture"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter picture"
-            android:textColor="#0075FF"
             android:fontFamily="@font/open_sans_semibold"
-            android:textSize="15sp"/>
+            android:textSize="20sp"
+            android:padding="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_cloud_upload_black_24dp"
+            app:iconTint="@color/colorPrimaryDark"
+            android:textAllCaps="false"
+            app:cornerRadius="5dp"/>
     </LinearLayout>
 
 
