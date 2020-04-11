@@ -59,6 +59,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:hint="Enter the phone Number"
+                    app:startIconDrawable="@drawable/ic_phone_iphone_black_24dp"
                     app:boxStrokeColor="@color/colorPrimaryDark"
                     app:endIconMode="clear_text"
                     app:hintTextColor="@color/colorPrimaryDark"
@@ -99,81 +100,84 @@
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/p_login_button_scanner"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:textSize="12sp"
-                        android:text="Scan "
+                        android:text="Login"
                         android:padding="10dp"
                         android:layout_marginEnd="1dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        app:backgroundTint="@color/white"
-                        app:icon="@drawable/ic_center_focus_strong_black_24dp"
-                        app:iconTint="@color/colorPrimaryDark" />
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/p_login_button_recharge"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginStart="1dp"
-                        android:textSize="12sp"
-                        android:text="Recharge"
-                        android:padding="10dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        app:backgroundTint="@color/white"
-                        app:icon="@drawable/ic_attach_money_black_24dp"
-                        app:iconTint="@color/colorPrimaryDark" />
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/colorPrimaryDark"
+                        app:iconTint="@color/white" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/light_grey"
+                    android:backgroundTint="@color/light_grey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:text="New user ? Sign up"
+                    android:textColor="#000" />
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/p_login_otp_cover"
+                    android:id="@+id/userregisterPhoneNo"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:hint="Enter OTP"
-                    app:boxStrokeColor="@color/colorPrimary"
+                    android:layout_marginTop="10dp"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    app:boxStrokeColor="@color/colorPrimaryDark"
                     app:endIconMode="clear_text"
-                    app:hintTextColor="@color/colorPrimary"
-                    app:startIconDrawable="@drawable/ic_lock_outline_black_24dp"
-                    app:endIconTint="@color/colorPrimaryDark"
-                    app:startIconTint="@color/colorPrimaryDark">
+                    app:endIconTint="@color/colorAccent"
+                    app:hintTextColor="@color/colorAccent"
+                    app:startIconDrawable="@drawable/ic_phone_iphone_black_24dp"
+                    app:startIconTint="@color/colorAccent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/p_login_otp"
+                        android:id="@+id/registerphonenumber"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:hint="Phone number"
+                        android:importantForAutofill="no"
                         android:inputType="number"
-                        android:layout_height="wrap_content" />
-
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="17sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/p_login_otp_button"
+                    android:id="@+id/otpVerificationButton"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="12sp"
-                    android:text="Verify OTP"
+                    android:layout_marginBottom="15dp"
                     android:padding="10dp"
-                    android:layout_marginEnd="1dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:backgroundTint="@color/white"
-                    app:icon="@drawable/ic_center_focus_strong_black_24dp"
-                    app:iconTint="@color/colorPrimaryDark" />
+                    android:text="SEND OTP"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:icon="@drawable/ic_chevron_right_black_24dp"
+                    app:iconTint="@color/white" />
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
