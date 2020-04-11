@@ -3,12 +3,13 @@ import { SubscribeService } from '../services/subscribe.service';
 import { AppService } from '../services/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ResourceLoader } from '@angular/compiler';
+import * as $ from 'jquery';
 import { HttpResponse } from '@angular/common/http';
 import { StateData, StateMapData } from '../models/models';
 
 const dataset = [{
   "id": "035",
-  "value": ".82",
+  "value": "1.5",
   "showLabel": "1"
   }];
   
