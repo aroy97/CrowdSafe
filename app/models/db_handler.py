@@ -32,9 +32,10 @@ class DBHandler:
             self.db.rollback()
             raise ConnectionError
 
-    def register(self, phone, pass_hash):
+    def register(self, phone, name, pass_hash):
         token = 0
-        query = 'INSERT INTO user(phone, password, token) VALUES ("' + phone + '","' + pass_hash + '","' + str(token) + '");'
+        query = 'INSERT INTO user(phone, name, password, token) VALUES ("' + phone + '","' + name + '","' + pass_hash \
+                + '","' + str(token) + '"); '
         status = 1
         try:
             self.execute_query(query)
@@ -45,7 +46,7 @@ class DBHandler:
     def login(self, phone, pass_hash):
         status = 1
         result = "No Data"
-        query = 'SELECT password, token FROM user;' # WHERE phone = "' + phone + '";'
+        query = 'SELECT password, token, name FROM user;' # WHERE phone = "' + phone + '";'
         try:
             self.execute_query(query)
         except ConnectionError:
@@ -53,7 +54,7 @@ class DBHandler:
             return status, result
         rows = self.cursor.fetchall()
         for row in rows:
-            result = (row[0], row[1])
+            result = (row[0], row[1], row[2])
         if result[0] == pass_hash:
             return status, result
         else:
