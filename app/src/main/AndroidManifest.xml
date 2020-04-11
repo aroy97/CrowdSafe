@@ -12,14 +12,18 @@
         android:roundIcon="@drawable/stylemapicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
-            android:theme="@style/NewTheme"></activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/NewTheme">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/NewTheme" />
         <activity
             android:name=".MapsActivityRaw"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/NewTheme"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="com.google.android.gms.version"
