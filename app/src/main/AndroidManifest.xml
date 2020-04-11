@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/stylemapicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".LoginActivity"
+            android:theme="@style/NewTheme"></activity>
         <activity
             android:name=".MapsActivityRaw"
             android:configChanges="orientation|screenSize"
@@ -31,7 +32,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".SplashActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/NewTheme">
             <intent-filter>
