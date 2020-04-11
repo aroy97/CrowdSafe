@@ -74,7 +74,7 @@ export class MainpageComponent implements OnInit {
   error: boolean = false;
   stateFullData: StateData[] = [];
   stateMapFullData: StateMapData[] = [];
-
+  fetchGroupDataDone: boolean;
 
   constructor(
     public appservice: AppService,
@@ -85,14 +85,15 @@ export class MainpageComponent implements OnInit {
 
   ngOnInit() {
     this.subscribeservice.setHeader('Coronavirus Infection Map Across India');
+    this.fetchGroupDataDone = false;
     this.appservice
     .gatherDataApi()
-    .then((response: any) => {
-      // if (response.status != 200) {
-      //   this.error = true;
-      // } else {
+    .then((response: HttpResponse<any>) => {
+      if (response.status != 200) {
+        this.error = true;
+      } else {
         console.log(response);
-        response.forEach((stateData: any) => {
+        response.body.forEach((stateData: any) => {
           let statemodel : StateData = new StateData(stateData);
           let stateMapModel : StateMapData = new StateMapData(stateData);
           this.stateFullData.push(statemodel);
@@ -114,10 +115,13 @@ export class MainpageComponent implements OnInit {
           // Source data as JSON --> id represents countries of the world.
           "data": this.stateMapFullData
         };
-      // }
-    });
+        this.fetchGroupDataDone = true;
+      }
+    }).catch((err: any) => {
+      this.fetchGroupDataDone = true;
+      console.log(err);
+    })
   }
-
   gotoState(event: any) {
     this.id = (event['dataObj']['id']);
     this.subscribeservice.setId(this.id);
