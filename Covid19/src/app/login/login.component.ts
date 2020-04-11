@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeservice.setHeader('Login Portal');
   }
 
   loginUser() {

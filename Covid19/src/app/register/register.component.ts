@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeservice.setHeader('Registration Portal');
   }
 
   registerUser() {

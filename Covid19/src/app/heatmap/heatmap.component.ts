@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { SubscribeService } from '../services/subscribe.service';
 
 
 @Component({
@@ -24,9 +25,10 @@ export class HeatmapComponent implements AfterViewInit {
   
 
   @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
-  constructor() { }
+  constructor(public subscribeservice: SubscribeService) { }
 
   ngAfterViewInit() {
+    this.subscribeservice.setHeader('Heat Map of Infected Regions Across India');
     this.mapInitializer();
   }
 

@@ -1,10 +1,27 @@
 <div class="row india-map">
     <div class="col-sm-6">
-        <fusioncharts width="1100" height="800" type="india" [dataSource]="dataSource" (initialized) = "initializedMap($event)" (entityClick) = "gotoState($event, id)">
+        <fusioncharts width="900" height="530" type="india" [dataSource]="dataSource" (initialized) = "initializedMap($event)" (entityClick) = "gotoState($event, id)">
         </fusioncharts>
     </div>
-    <div class="col-sm-6">
-
+    <div class="col-sm-6 data-table">
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>State Name</th>
+                    <th>Total Cases</th>
+                    <th>Active Cases</th>
+                    <th>Death Cases</th>
+                    <th>Recovered Cases</th>
+                </tr>
+                <tr *ngFor = "let State of stateFullData">
+                    <td>{{State.name}}</td>
+                    <td>{{State.infected}}</td>
+                    <td>{{State.active}}</td>
+                    <td>{{State.deaths}}</td>
+                    <td>{{State.recovered}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

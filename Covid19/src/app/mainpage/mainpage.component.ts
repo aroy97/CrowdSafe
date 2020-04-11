@@ -84,7 +84,7 @@ export class MainpageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    this.subscribeservice.setHeader('Coronavirus Infection Map Across India');
     this.appservice
     .gatherDataApi()
     .then((response: any) => {
@@ -102,8 +102,8 @@ export class MainpageComponent implements OnInit {
         console.log(this.stateMapFullData);
         this.dataSource = {
           "chart": {
-          "caption": "Coronavirus Infection Risk Map",
-          "subcaption": "India",
+          // "caption": "Coronavirus Infection Risk Map",
+          // "subcaption": "India",
           "includevalueinlabels": "1",
           "labelsepchar": ": ",
           "entityFillHoverColor": "#FFF9C4",

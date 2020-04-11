@@ -1,0 +1,27 @@
+.title {
+    padding: 4px 15px;
+    padding-left: 15%;
+    background-color: aliceblue;
+    margin-bottom: 13px;
+}
+.login{
+    form{
+        margin-bottom: 200px;
+        margin-left: 14%;
+        .form-login{
+            text-align: center;
+            .login-button{
+                min-width: 80px;
+                min-height: 34px;
+                background-color: #FFCB05;
+                border: none;
+                border-radius: 8%;
+                font-weight: 700;
+                color: #004C6C;
+            }
+        }
+        .register_redirect{
+            text-align: center;
+        }
+    }
+}
