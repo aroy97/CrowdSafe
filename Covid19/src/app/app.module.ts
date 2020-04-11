@@ -11,7 +11,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-import { NgxLoadingModule } from 'ngx-loading';8
+import { NgxLoadingModule } from 'ngx-loading';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as FusionMaps from "fusionmaps/fusioncharts.maps";
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import * as India from 'fusioncharts/maps/fusioncharts.india';
+import * as Andaman from 'fusioncharts/maps/fusioncharts.andamanandnicobar';
+import * as WestBengal from 'fusioncharts/maps/fusioncharts.westbengal';
+
+
+
+FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, Andaman, WestBengal, FusionTheme);
 
 @NgModule({
   declarations: [
@@ -29,7 +40,8 @@ import { NgxLoadingModule } from 'ngx-loading';8
     RouterModule.forRoot([]),
     NgxLoadingModule.forRoot({}),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FusionChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
