@@ -16,25 +16,18 @@ export class HeatmapComponent implements AfterViewInit {
   //   zoom: 8,
   // };
 
-  sanFrancisco = new google.maps.LatLng(22.5726, 88.3639);
-  
 
-  heatmapData = [
-    new google.maps.LatLng(37.782, -122.447),
-    new google.maps.LatLng(37.782, -122.445),
-    new google.maps.LatLng(37.782, -122.443),
-    new google.maps.LatLng(37.782, -122.441),
-    new google.maps.LatLng(37.782, -122.439),
-    new google.maps.LatLng(37.782, -122.437),
-    new google.maps.LatLng(37.782, -122.435),
-    new google.maps.LatLng(37.785, -122.447),
-    new google.maps.LatLng(37.785, -122.445),
-    new google.maps.LatLng(37.785, -122.443),
-    new google.maps.LatLng(37.785, -122.441),
-    new google.maps.LatLng(37.785, -122.439),
-    new google.maps.LatLng(37.785, -122.437),
-    new google.maps.LatLng(37.785, -122.435)
+  
+  heatMapData = [
+    {location: new google.maps.LatLng(22.573, 88.364), weight: 0.1},
+    {location: new google.maps.LatLng(22.574, 88.365), weight: 0.2},
+    {location: new google.maps.LatLng(22.575, 88.366), weight: 0.3},
+    {location: new google.maps.LatLng(22.576, 88.367), weight: 0.4},
+    {location: new google.maps.LatLng(22.577, 88.368), weight: 1.5},
   ];
+  kolkata = new google.maps.LatLng(22.5726, 88.3639);
+
+
   // marker = new google.maps.Marker({
   //   position: this.coordinates,
   //   map: this.map,
@@ -54,12 +47,12 @@ export class HeatmapComponent implements AfterViewInit {
     // this.mapOptions);
     // this.marker.setMap(this.map);
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: this.sanFrancisco,
+      center: this.kolkata,
       zoom: 13,
       mapTypeId: 'roadmap'
     });
     var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: this.heatmapData
+      data: this.heatMapData
     });
     heatmap.setMap(map);
    }
