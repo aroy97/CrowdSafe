@@ -45,12 +45,12 @@
           </div>
         </div>
         <div class="form-group">        
-          <div class="col-sm-offset-2 col-sm-10">
+          <div class="col-sm-offset-2 col-sm-10 form-register">
             <button *ngIf = "!otpValidate" (click) = "requestOtp()" class="btn btn-default register-button">Send OTP</button>
           </div>
         </div>
         <div class="form-group">        
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-2 col-sm-10 form-register">
                 <button *ngIf = "otpValidate" (click) = "validateOtp()" class="btn btn-default register-button">Verify OTP</button>
             </div>
         </div>

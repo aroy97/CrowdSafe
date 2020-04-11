@@ -31,8 +31,8 @@
                 </ul>
             </div>
             <div class="col-sm-3">
-                <button *ngIf="inboolean" class="header-btn" (click) = "inboolean = !inboolean">Sign In</button>
-                <button *ngIf="!inboolean" class="header-btn" (click) = "inboolean = !inboolean">Sign Out</button>
+                <button *ngIf="inboolean" class="header-btn" (click) = "navigateLogin()">Sign In</button>
+                <button *ngIf="!inboolean" class="header-btn" (click) = "navigateLogin()">Sign Out</button>
             </div>
         </div>
     </div>
