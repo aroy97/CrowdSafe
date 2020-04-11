@@ -12,8 +12,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { NgxLoadingModule } from 'ngx-loading';
-import { FusionChartsModule } from 'angular-fusioncharts';
-import * as FusionCharts from 'fusioncharts';
 import { HeatmapComponent } from './heatmap/heatmap.component';
 
 
