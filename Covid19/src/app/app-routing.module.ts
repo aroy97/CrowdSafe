@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { HeatmapComponent } from './heatmap/heatmap.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: MainpageComponent },
-  { path: 'heatmap', component: HeatmapComponent }
+  { path: 'heatmap', component: HeatmapComponent },
+  { path: 'about', component: AboutComponent }
 
 ];
 
