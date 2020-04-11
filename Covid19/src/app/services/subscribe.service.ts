@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SubscribeService {
   public userData: BehaviorSubject<any> = new BehaviorSubject(null);
   public id: BehaviorSubject<any> = new BehaviorSubject(null);
+  public header: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor() { }
 
@@ -16,5 +17,9 @@ export class SubscribeService {
 
   setId(id: any): void {
     this.id.next(id);
+  }
+
+  setHeader(header: string) : void {
+    this.header.next(header);
   }
 }

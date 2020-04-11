@@ -84,7 +84,7 @@ export class MainpageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+    this.subscribeservice.setHeader('Corona Cases Across India');
     this.appservice
     .gatherDataApi()
     .then((response: any) => {
