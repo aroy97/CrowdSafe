@@ -13,6 +13,9 @@
             th{
                 vertical-align: middle;
             }
+            tr:nth-child(2){
+                background-color: burlywood;
+            }
         }
     }
 }
