@@ -19,6 +19,7 @@ import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import * as India from 'fusioncharts/maps/fusioncharts.india';
 // import * as Andaman from 'fusioncharts/maps/fusioncharts.andamanandnicobar';
 import * as WestBengal from 'fusioncharts/maps/fusioncharts.westbengal';
+import { HeatmapComponent } from './heatmap/heatmap.component';
 
 
 
@@ -31,7 +32,8 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, WestBengal, FusionThe
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    MainpageComponent
+    MainpageComponent,
+    HeatmapComponent
   ],
   imports: [
     CommonModule,
