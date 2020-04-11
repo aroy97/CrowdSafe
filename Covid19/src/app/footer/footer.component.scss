@@ -1,33 +1,25 @@
 .cwsf-footer{
     background-color: #004C6C;
-    padding: 28px;
-    height: 112px;
+    padding: 6px;
+    height: 40px;
     position: fixed;
-    left: auto;
+    left: 0;
     bottom: 0;
-    width: 80%;
-    .top-part{
-        .tag{
-            color: #FFCB05;
-            font-weight: 700;
-            font-size: 18px;
-            float: left;
-        }
-        .acronym{
-            font-weight: 700;
-            color: #ffffff;
-            font-size: 18px;
-            float: right;
-        }
+    width: 100%;
+    .tag{
+        color: #FFCB05;
+        font-weight: 700;
+        font-size: 18px;
     }
-    .bottom-part{
-        .copyright{
-            color: #ffffff;
-            float: left;
-        }
-        .legal{
-            color: #ffffff;
-            float: right;
-        }
+    .acronym{
+        font-weight: 700;
+        color: #ffffff;
+        font-size: 18px;
+        text-align: right;
+    }
+    .copyright{
+        color: #ffffff;
+        text-align: center;
+        text-align: center;
     }
 }

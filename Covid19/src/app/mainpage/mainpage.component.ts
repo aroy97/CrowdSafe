@@ -3,10 +3,11 @@ import { SubscribeService } from '../services/subscribe.service';
 import { AppService } from '../services/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ResourceLoader } from '@angular/compiler';
+import * as $ from 'jquery';
 
 const dataset = [{
   "id": "035",
-  "value": ".82",
+  "value": "1.5",
   "showLabel": "1"
   }];
   
@@ -64,7 +65,7 @@ export class MainpageComponent implements OnInit {
       "chart": {
       "caption": "Coronavirus Infection Risk Map",
       "subcaption": "India",
-      "numbersuffix": "%",
+      // "numbersuffix": "%",
       "includevalueinlabels": "1",
       "labelsepchar": ": ",
       "entityFillHoverColor": "#FFF9C4",
@@ -73,7 +74,7 @@ export class MainpageComponent implements OnInit {
       // Aesthetics; ranges synced with the slider
       "colorrange": colorrange,
       // Source data as JSON --> id represents countries of the world.
-      "data": []
+      "data": dataset
     };
    }
 
