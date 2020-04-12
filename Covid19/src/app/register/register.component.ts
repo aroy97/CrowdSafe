@@ -47,8 +47,8 @@ export class RegisterComponent implements OnInit {
       else{
         let payload: {};
         payload = {
-          "name": this.phonenumber,
-          "user": this.email,
+          "name": this.email,
+          "user": this.phonenumber,
           "password": sha256(this.password)
         }
         this.userloader = true;
