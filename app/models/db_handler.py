@@ -46,7 +46,7 @@ class DBHandler:
     def login(self, phone, pass_hash):
         status = 1
         result = "No Data"
-        query = 'SELECT password, token, name FROM user;' # WHERE phone = "' + phone + '";'
+        query = 'SELECT password, token, name FROM user WHERE phone = "' + phone + '";'
         try:
             self.execute_query(query)
         except ConnectionError:
@@ -55,7 +55,7 @@ class DBHandler:
         rows = self.cursor.fetchall()
         for row in rows:
             result = (row[0], row[1], row[2])
-        if result[0] == pass_hash:
+        if str(result[0]) == pass_hash:
             return status, result
         else:
             return 0, "No Data"
@@ -78,6 +78,20 @@ class DBHandler:
             status = 0
         return status
 
+    def get_email(self, phone):
+        status = 1
+        result = "No Data"
+        query = 'SELECT name FROM user WHERE phone = "' + phone + '";'
+        try:
+            self.execute_query(query)
+        except ConnectionError:
+            status = 0
+            return status, result
+        rows = self.cursor.fetchall()
+        for row in rows:
+            result = row[0]
+        return status, result
+
 
 def encrypt_string(hash_string):
     sha_signature = \
@@ -85,27 +99,27 @@ def encrypt_string(hash_string):
     return sha_signature
 
 
-if __name__ == '__main__':
-    obj = DBHandler()
-
-    table_name = 'user'
-    parameters = ['phone VARCHAR(10) PRIMARY KEY', 'password VARCAHR(256) NOT NULL, token INT']
-    obj.create_table(table_name, parameters)
-    phone = '8017273846'
-    password = 'Mar@1234'
-    password = encrypt_string(password)
-    status = obj.register(phone, password)
-    print(status)
-    status, result = obj.login(phone, password)
-    if status == 1:
-        print(result)
-    status = obj.increment_token(phone)
-    print(status)
-    status, result = obj.login(phone, password)
-    if status == 1:
-        print(result)
-    status = obj.decrement_token(phone)
-    print(status)
-    status, result = obj.login(phone, password)
-    if status == 1:
-        print(result)
+# if __name__ == '__main__':
+#     obj = DBHandler()
+#
+#     table_name = 'user'
+#     parameters = ['phone VARCHAR(10) PRIMARY KEY', 'password VARCAHR(256) NOT NULL, token INT']
+#     obj.create_table(table_name, parameters)
+#     phone = '8017273846'
+#     password = 'Mar@1234'
+#     password = encrypt_string(password)
+#     status = obj.register(phone, password)
+#     print(status)
+#     status, result = obj.login(phone, password)
+#     if status == 1:
+#         print(result)
+#     status = obj.increment_token(phone)
+#     print(status)
+#     status, result = obj.login(phone, password)
+#     if status == 1:
+#         print(result)
+#     status = obj.decrement_token(phone)
+#     print(status)
+#     status, result = obj.login(phone, password)
+#     if status == 1:
+#         print(result)
