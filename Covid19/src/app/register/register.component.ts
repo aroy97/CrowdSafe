@@ -12,8 +12,8 @@ import { sha256 } from 'js-sha256';
 })
 export class RegisterComponent implements OnInit {
   userloader: boolean = false;
-  name: string = '';
-  phoneNumber: string = '';
+  phonenumber: string = '';
+  email: string = '';
   password: string = '';
   confirmPassword: string = '';
   otp: string = '';
@@ -34,21 +34,21 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    if(this.name != "" && this.phoneNumber != "" && this.password != "" && this.confirmPassword !=""){
+    if(this.phonenumber != "" && this.email != "" && this.password != "" && this.confirmPassword !=""){
       if(this.password != this.confirmPassword){
         alert("Passwords dont match!");
         this.password = "";
         this.confirmPassword = "";
       }
-      if(this.phoneNumber.length != 10) {
+      if(this.phonenumber.length != 10) {
         alert("Phone number should be 10 digits");
-        this.phoneNumber = "";
+        this.email = "";
       }
       else{
         let payload: {};
         payload = {
-          "name": this.name,
-          "user": this.phoneNumber,
+          "name": this.phonenumber,
+          "user": this.email,
           "password": sha256(this.password)
         }
         this.userloader = true;
@@ -71,48 +71,48 @@ export class RegisterComponent implements OnInit {
   }
 
   requestOtp() {
-    if(this.phoneNumber != ""){
-      console.log(this.phoneNumber.length);
-      if(this.phoneNumber.length != 10) {
-        alert("Phone number should be 10 digits");
-        this.phoneNumber = "";
-      } else {
+    if(this.email != ""){
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
         let payload: {};
         payload = {
-          "user": this.phoneNumber
+          "name": this.email
         }
         this.userloader = true;
         this.appservice
         .messageOtpApi(payload
         ).then((response: HttpResponse<any>) => {
-          console.log(response);
+          console.log(response.body['OTP']);
           this.userloader = false;
           if(response.status == 200) {
-            this.otpFromApi = response.body[0]['otp'];
+            this.otpFromApi = response.body['OTP'];
             this.otpValidate = true;
           }
         }).catch((err: any) => {
+          this.userloader = false;
           console.log(err);
         })
+      } else {
+        alert('Enter a valid Email');
       }
     } else {
-      alert("Phone Number is Mandatory!");
+      alert("Email is Mandatory!");
     }     
   }
 
   validateOtp() {
     if (sha256(this.otp) == this.otpFromApi) {
       this.registerflag = true;
+      console.log('Matched');
     } else {
       alert("OTP does not match");
     }
   }
 
   clearfields() {
-    this.name = "";
+    this.phonenumber = "";
     this.password = "";
     this.confirmPassword = "";
-    this.phoneNumber = "";
+    this.email = "";
   }
 
   navigateLogin() {

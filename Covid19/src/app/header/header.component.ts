@@ -21,9 +21,18 @@ export class HeaderComponent implements OnInit {
     this.subscribeservice.header.subscribe((title: string) => {
       this.header = title;
     })
+    this.subscribeservice.userData.subscribe((user: string) => {
+      if (user != null) {
+        this.inboolean = false;
+      }
+    })
   }
 
   navigateLogin() {
     this.router.navigate(['../login'], { relativeTo: this.route }).catch();
+  }
+
+  signOut() {
+    this.subscribeservice.setUserData(null);
   }
 }

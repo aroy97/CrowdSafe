@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppService } from '../services/app.service';
 
 @Component({
   selector: 'app-about',
@@ -11,18 +12,29 @@ export class AboutComponent implements OnInit {
   // selectedFile: File;
   public imagePath;
   imgURL: any;
-  imageSrc;
+  imageSrc: any;
   sellersPermitFile: any;
   //base64s
   sellersPermitString: string;
   //json
-  finalJson = {};
-
+  finalJson: {} = {};
+  errorMsg: boolean = false;
   currentId: number = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    public appservice: AppService,
+    ) { }
 
   ngOnInit() {
+    this.appservice.getPosition()
+    .then(pos=>
+    {
+      console.log(`Position: ${pos.lng} ${pos.lat}`);
+    }).catch((err: any) => {
+      this.errorMsg = true;
+      console.log(err);
+    })
   }
 
   // onFileChanged(event: any) {
