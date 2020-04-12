@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppService {
 
-  private BASE_URL: string = "https://bcd5bd81.ngrok.io";
+  private BASE_URL: string = "https://9d433566.ngrok.io";
   private username: string = 'Covid19';
   private password: string = 'Covid19';
   private usernamePassword: string = `${this.username}:${this.password}`;
@@ -25,7 +25,7 @@ export class AppService {
   }
 
   async messageOtpApi(credentials: any): Promise<any> {
-    const url: string = `${this.BASE_URL}/message`;
+    const url: string = `${this.BASE_URL}/send_otp`;
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
 
@@ -81,5 +81,20 @@ export class AppService {
     //     "tested" : "250"
     //   }
     // ]
+  }
+
+  getPosition(): Promise<any>
+  {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+        },
+        err => {
+          reject(err);
+        });
+    });
+
   }
 }

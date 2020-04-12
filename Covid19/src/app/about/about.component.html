@@ -4,7 +4,12 @@
   #fileInput>
 <button (click)="fileInput.click()">Select File</button>
 <button (click)="onUpload()">Upload!</button> -->
-
+<div *ngIf = "errorMsg">
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <strong>Sorry!</strong> Please clear cache and allow device location.
+  </div>
+</div>
 <p>Input one</p>
 
 <input (change)="picked($event,1)" type="file"  accept="image/*">
