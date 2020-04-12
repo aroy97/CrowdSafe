@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   phoneNumber: string = '';
   password: string = '';
   userloader: boolean = false;
+  errorFlag: boolean = false;
+  errorMsg: string = "";
 
   constructor(
     public appservice: AppService,
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeservice.setHeader('Login Portal');
   }
 
   loginUser() {
@@ -39,16 +42,28 @@ export class LoginComponent implements OnInit {
           "password": sha256(this.password)
         }
         this.userloader = true;
+        this.errorFlag = false;
+        this.errorMsg = "";
         this.appservice
         .loginApi(payload
         ).then((response: HttpResponse<any>) => {
           console.log(response);
           this.userloader = false;
           if(response.status == 200) {
-            
+            this.subscribeservice.setUserData(response.body['Name']);
+            this.subscribeservice.setToken(response.body['Token']);
+            this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
+          }
+          else if(response.status == 204){
+            this.errorFlag = true;
+            this.errorMsg = "Authentication Failed";
           }
         }).catch((err: any) => {
+          this.userloader = false;
           console.log(err);
+          this.userloader = false;
+          this.errorMsg = "Authentication Failed";
+          this.errorFlag = true;
         })
         this.clearfields();
       }

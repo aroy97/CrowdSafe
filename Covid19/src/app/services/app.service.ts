@@ -6,10 +6,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppService {
 
-  private BASE_URL: string = "";
-  private username: string = 'covid19';
-  private password: string = 'covid19';
-  private usernamePassword = `${this.username}:${this.password}`;
+  private BASE_URL: string = "https://3c343656.ngrok.io";
+  private username: string = 'Covid19';
+  private password: string = 'Covid19';
+  private usernamePassword: string = `${this.username}:${this.password}`;
   private httpOptions: any = ({
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export class AppService {
   }
 
   async messageOtpApi(credentials: any): Promise<any> {
-    const url: string = `${this.BASE_URL}/message`;
+    const url: string = `${this.BASE_URL}/send_otp`;
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
 
@@ -34,31 +34,33 @@ export class AppService {
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
 
-  async gatherDataApi(): Promise<any> {
-    const url: string = `${this.BASE_URL}/infected`;
-    // return this.http.get(url, this.httpOptions).toPromise();
-    return [
-      {
-        "id" : "001",
-        "infected" : "30",
-        "deaths" : "10",
-        "recovered" : "20",
-        "tested" : "250"
-      },
-      {
-        "id" : "002",
-        "infected" : "95",
-        "deaths" : "10",
-        "recovered" : "20",
-        "tested" : "250"
-      },
-      {
-        "id" : "035",
-        "infected" : "150",
-        "deaths" : "10",
-        "recovered" : "20",
-        "tested" : "250"
-      }
-    ]
+  async uploadApi(credentials: any): Promise<any> {
+    const url: string = `${this.BASE_URL}/crowd_detection`;
+    return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
+
+  getPosition(): Promise<any>
+  {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resp => {
+      resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+      },
+      err => {
+        reject(err);
+      });
+    });
+
+  }
+  
+  async gatherDataApi(): Promise<any> {
+    const url: string = `${this.BASE_URL}/state_data`;
+    return this.http.get(url, this.httpOptions).toPromise();
+  }
+
+  async gatherHeatMapDataApi(): Promise<any> {
+    const url: string = `${this.BASE_URL}/get_heatmap`;
+    return this.http.get(url, this.httpOptions).toPromise();
+  }
+
+
 }

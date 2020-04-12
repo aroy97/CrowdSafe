@@ -12,14 +12,16 @@ import { sha256 } from 'js-sha256';
 })
 export class RegisterComponent implements OnInit {
   userloader: boolean = false;
-  name: string = '';
-  phoneNumber: string = '';
+  phonenumber: string = '';
+  email: string = '';
   password: string = '';
   confirmPassword: string = '';
   otp: string = '';
   otpFromApi: string = '';
   otpValidate : boolean = false;
   registerflag: boolean = false;
+  errorflag: boolean = false;
+  errorMsg: string = "";
 
 
   constructor(
@@ -30,33 +32,33 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeservice.setHeader('Registration Portal');
   }
 
   registerUser() {
-    if(this.name != "" && this.phoneNumber != "" && this.password != "" && this.confirmPassword !=""){
+    if(this.phonenumber != "" && this.email != "" && this.password != "" && this.confirmPassword !=""){
       if(this.password != this.confirmPassword){
         alert("Passwords dont match!");
         this.password = "";
         this.confirmPassword = "";
       }
-      if(this.phoneNumber.length != 10) {
+      if(this.phonenumber.length != 10) {
         alert("Phone number should be 10 digits");
-        this.phoneNumber = "";
+        this.phonenumber = "";
       }
       else{
         let payload: {};
         payload = {
-          "name": this.name,
-          "user": this.phoneNumber,
+          "name": this.email,
+          "user": this.phonenumber,
           "password": sha256(this.password)
         }
         this.userloader = true;
         this.appservice
         .registerApi(payload
         ).then((response: HttpResponse<any>) => {
-          console.log(response);
           this.userloader = false;
-          if(response.status == 200) {
+          if(response.status == 201) {
             this.router.navigate(['../login'], { relativeTo: this.route }).catch();
           }
         }).catch((err: any) => {
@@ -70,32 +72,37 @@ export class RegisterComponent implements OnInit {
   }
 
   requestOtp() {
-    if(this.phoneNumber != ""){
-      console.log(this.phoneNumber.length);
-      if(this.phoneNumber.length != 10) {
-        alert("Phone number should be 10 digits");
-        this.phoneNumber = "";
-      } else {
+    if(this.email != ""){
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
         let payload: {};
         payload = {
-          "user": this.phoneNumber
+          "name": this.email
         }
         this.userloader = true;
         this.appservice
         .messageOtpApi(payload
         ).then((response: HttpResponse<any>) => {
-          console.log(response);
           this.userloader = false;
-          if(response.status == 200) {
-            this.otpFromApi = response.body[0]['otp'];
+          if (response.status == 200) {
+            this.errorflag = false;
+            this.otpFromApi = response.body['OTP'];
             this.otpValidate = true;
           }
         }).catch((err: any) => {
+          this.userloader = false;
+          if (err['status'] == 409) {
+            this.errorMsg = err['error']['OTP'];
+            this.errorflag = true;
+            this.email = "";
+          }
+
           console.log(err);
         })
+      } else {
+        alert('Enter a valid Email');
       }
     } else {
-      alert("Phone Number is Mandatory!");
+      alert("Email is Mandatory!");
     }     
   }
 
@@ -108,10 +115,10 @@ export class RegisterComponent implements OnInit {
   }
 
   clearfields() {
-    this.name = "";
+    this.phonenumber = "";
     this.password = "";
     this.confirmPassword = "";
-    this.phoneNumber = "";
+    this.email = "";
   }
 
   navigateLogin() {

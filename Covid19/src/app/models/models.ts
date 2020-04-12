@@ -4,7 +4,7 @@ export class StateData {
     infected: string;
     deaths: string;
     recovered: string;
-    tested: string;
+    active: string;
 
     constructor(data: any) {
         this.id = data['id'],
@@ -12,7 +12,7 @@ export class StateData {
         this.infected = data['infected'],
         this.deaths = data['deaths'],
         this.recovered = data['recovered'],
-        this.tested = data['tested']
+        this.active = (parseInt(data['infected'])-parseInt(data['deaths'])-parseInt(data['recovered'])).toString()
     }
 }
 
@@ -28,7 +28,19 @@ export class StateMapData {
     }
 }
 
+export class HeatMapData {
+    location: google.maps.LatLng;
+    weight: number;
+
+    constructor(data: any) {
+        this.location = new google.maps.LatLng(parseFloat(data['Latitude']),parseFloat(data['Longitude']));
+        // this.weight = data['Weight'];
+        this.weight = 40;
+    }
+}
+
 export enum IdToStateName {
+    '000' = 'India',
     '001' = 'Andaman and Nicobar Islands',
     '002' = 'Andhra Pradesh',
     '003' = 'Arunachal Pradesh',
