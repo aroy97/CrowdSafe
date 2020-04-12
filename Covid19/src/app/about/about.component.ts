@@ -9,7 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AboutComponent implements OnInit {
 
   // selectedFile: File;
-
+  public imagePath;
+  imgURL: any;
   imageSrc;
   sellersPermitFile: any;
   //base64s
@@ -72,6 +73,12 @@ export class AboutComponent implements OnInit {
     if (!file.type.match(pattern)) {
       alert('invalid format');
       return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(file); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
     }
     reader.onloadend = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
