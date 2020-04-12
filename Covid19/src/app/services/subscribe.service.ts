@@ -5,13 +5,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SubscribeService {
-  public userData: BehaviorSubject<any> = new BehaviorSubject(null);
+  public userData: BehaviorSubject<string> = new BehaviorSubject(null);
   public id: BehaviorSubject<any> = new BehaviorSubject(null);
   public header: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor() { }
 
-  setUserData(role: any): void {
+  setUserData(role: string): void {
     this.userData.next(role);
   }
 

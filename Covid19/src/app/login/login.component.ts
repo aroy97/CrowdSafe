@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
           console.log(response);
           this.userloader = false;
           if(response.status == 200) {
-            
+            this.subscribeservice.setUserData(response.body['Name']);
+            this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
           }
         }).catch((err: any) => {
           console.log(err);

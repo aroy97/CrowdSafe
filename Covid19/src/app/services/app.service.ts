@@ -25,7 +25,7 @@ export class AppService {
   }
 
   async messageOtpApi(credentials: any): Promise<any> {
-    const url: string = `${this.BASE_URL}/message`;
+    const url: string = `${this.BASE_URL}/send_otp`;
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
 
@@ -96,5 +96,20 @@ export class AppService {
     //     "tested" : "250"
     //   }
     // ]
+  }
+
+  getPosition(): Promise<any>
+  {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+        },
+        err => {
+          reject(err);
+        });
+    });
+
   }
 }

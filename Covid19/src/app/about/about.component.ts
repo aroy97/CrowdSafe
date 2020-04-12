@@ -14,13 +14,13 @@ export class AboutComponent implements OnInit {
   errorMsg: boolean = false;
   public imagePath;
   imgURL: any;
-  imageSrc;
+  imageSrc: any;
   sellersPermitFile: any;
   //base64s
   sellersPermitString: string;
   //json
-  finalJson = {};
-
+  finalJson: {} = {};
+  errorMsg: boolean = false;
   currentId: number = 0;
 
   constructor(
