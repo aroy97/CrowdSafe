@@ -1,6 +1,14 @@
-<input
+<!-- <input
   style="display: none"
   type="file" (change)="onFileChanged($event)"
   #fileInput>
 <button (click)="fileInput.click()">Select File</button>
-<button (click)="onUpload()">Upload!</button>
+<button (click)="onUpload()">Upload!</button> -->
+
+<p>Input one</p>
+<input (change)="picked($event,1)" type="file">
+
+<br>
+<hr>
+
+<button class="butoncus_sig" id="dnext" (click)="addPictures()">Submit</button>
