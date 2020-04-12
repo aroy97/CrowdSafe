@@ -1,4 +1,10 @@
 <ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: true }"></ngx-loading>
+<div class="error" *ngIf = "errorflag">
+  <div class="alert" style="text-align: center;">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <div>{{errorMsg}}</div>
+  </div>
+</div>
 <div class = "requestOtp" *ngIf = "!otpValidate && !registerflag">
   <div class="row">
     <div class="title col-sm-12" style="text-align: center;">

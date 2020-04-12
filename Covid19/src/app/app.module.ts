@@ -21,6 +21,7 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
 import { AboutComponent } from './about/about.component';
 import { SymptomsComponent } from './symptoms/symptoms.component';
 import { TestingComponent } from './testing/testing.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 
@@ -37,7 +38,8 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
     HeatmapComponent,
     AboutComponent,
     SymptomsComponent,
-    TestingComponent
+    TestingComponent,
+    UploadComponent
   ],
   imports: [
     CommonModule,
