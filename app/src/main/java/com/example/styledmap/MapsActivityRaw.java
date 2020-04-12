@@ -198,6 +198,35 @@ public class MapsActivityRaw extends AppCompatActivity
         
     }
 
+    private int getServerity(String grade) {
+        int color = 0;
+        switch (grade) {
+            case HIGH:
+                color = 0x22ff0000; //RED
+
+                break;
+            case MILD:
+                color = 0x22ff9900;//ORANGE
+
+
+                break;
+            case MEDIUM:
+                color = 0x22ffe100;//YELLOW
+
+                break;
+            case LOW:
+                color = 0x220040ff;//BLUE
+
+                break;
+            default:
+                color = 0x222bff00;//GREEN
+
+                break;
+        }
+        return  color;
+
+    }
+
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {

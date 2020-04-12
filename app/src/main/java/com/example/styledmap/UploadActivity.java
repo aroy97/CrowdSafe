@@ -22,6 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -131,8 +135,27 @@ public class UploadActivity extends AppCompatActivity {
         {
             Bitmap bitmap = BitmapFactory.decodeFile(dp_file);
             circleImageView.setImageBitmap(bitmap);
+
+            uploadImg(bitmap);
         }
     }
+
+    private void uploadImg(Bitmap bitmap) {
+
+        // Write a message to the database
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference dbRef = db.getReference();
+
+        StorageReference mStorageRef;
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
+
+
+
+    }
+
+
+
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(UploadActivity.this);
         pictureDialog.setTitle("Select Action");

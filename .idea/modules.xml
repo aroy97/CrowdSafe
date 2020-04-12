@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-CODE_COVID.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-CODE_COVID.iml" />
       <module fileurl="file://$PROJECT_DIR$/CODE_COVID.iml" filepath="$PROJECT_DIR$/CODE_COVID.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StyledMap.iml" filepath="$PROJECT_DIR$/StyledMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
