@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
       }
       if(this.phonenumber.length != 10) {
         alert("Phone number should be 10 digits");
-        this.email = "";
+        this.phonenumber = "";
       }
       else{
         let payload: {};
@@ -55,9 +55,8 @@ export class RegisterComponent implements OnInit {
         this.appservice
         .registerApi(payload
         ).then((response: HttpResponse<any>) => {
-          console.log(response);
           this.userloader = false;
-          if(response.status == 200) {
+          if(response.status == 201) {
             this.router.navigate(['../login'], { relativeTo: this.route }).catch();
           }
         }).catch((err: any) => {
@@ -81,11 +80,13 @@ export class RegisterComponent implements OnInit {
         this.appservice
         .messageOtpApi(payload
         ).then((response: HttpResponse<any>) => {
-          console.log(response.body['OTP']);
           this.userloader = false;
-          if(response.status == 200) {
+          if (response.status == 200) {
             this.otpFromApi = response.body['OTP'];
             this.otpValidate = true;
+          } else if (response.status == 409) {
+            alert('Email already exists');
+            this.email = "";
           }
         }).catch((err: any) => {
           this.userloader = false;
@@ -102,7 +103,6 @@ export class RegisterComponent implements OnInit {
   validateOtp() {
     if (sha256(this.otp) == this.otpFromApi) {
       this.registerflag = true;
-      console.log('Matched');
     } else {
       alert("OTP does not match");
     }
