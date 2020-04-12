@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
             this.errorMsg = "Authentication Failed";
           }
         }).catch((err: any) => {
+          this.userloader = false;
           console.log(err);
           this.userloader = false;
           this.errorMsg = "Authentication Failed";
