@@ -30,6 +30,9 @@ class Notification:
         otp = str(random.randint(1000, 9999))
         body = "Your OTP for Crowd Safe is " + otp
         subject = 'OTP for Crowd Safe'
+        status, res = DBHandler().get_phone(receivers[0])
+        if res:
+            return "Email Already Exists"
         try:
             self.send_mail(body, subject, receivers)
         except Exception as e:
@@ -45,6 +48,7 @@ class Notification:
         try:
             self.send_mail(body, subject, receivers)
         except Exception as e:
+            print(str(e))
             status = 0
         return status
 
