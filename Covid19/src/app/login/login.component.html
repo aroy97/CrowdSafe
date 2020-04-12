@@ -1,4 +1,10 @@
 <ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: false }"></ngx-loading>
+<div *ngIf = "errorFlag">
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        {{errorMsg}}
+    </div>
+</div>
 <div class="loginUI">
     <div class="row">
         <div class="title col-sm-12" style="text-align: center;">

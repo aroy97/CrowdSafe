@@ -23,14 +23,19 @@ export class UploadComponent implements OnInit {
   finalJson: {} = {};
   // errorMsg: boolean = false;
   currentId: number = 0;
+<<<<<<< HEAD
   userloader: boolean = false;
   latitude: any;
   longitude: any;
+=======
+  tokenFlag: boolean = false;
+>>>>>>> 9c58be609a54275e00d818ad2a6f9da5a4937c56
 
   constructor(
     public appservice: AppService,
     public subscribeservice: SubscribeService,
     public router: Router,
+<<<<<<< HEAD
     private route: ActivatedRoute,
     ) { }
 
@@ -45,7 +50,33 @@ export class UploadComponent implements OnInit {
     }).catch((err: any) => {
       this.errorMsg = true;
       console.log(err);
+=======
+    private route: ActivatedRoute
+    ) { }
+
+  ngOnInit() {
+    this.subscribeservice.userData.subscribe((user: string) => {
+      // console.log(user);
+      if (user == null) {
+        this.router.navigate(['../login'], { relativeTo: this.route }).catch();
+      }
+      else{
+        this.subscribeservice.token.subscribe((tok: number) => {
+          this.tokenFlag = (tok>0)?true:false;
+        });
+        this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
+        this.appservice.getPosition()
+        .then(pos=>
+        {
+          console.log(`Position: ${pos.lng} ${pos.lat}`);
+        }).catch((err: any) => {
+          this.errorMsg = true;
+          console.log(err);
+        })
+      }
+>>>>>>> 9c58be609a54275e00d818ad2a6f9da5a4937c56
     })
+    
   }
 
   addPictures() {

@@ -11,6 +11,9 @@ export class HeaderComponent implements OnInit {
 
   inboolean: boolean = true;
   header: string = "";
+  userLogin: boolean = false;
+
+
   constructor(
     public subscribeservice: SubscribeService,
     public router: Router,
@@ -22,14 +25,36 @@ export class HeaderComponent implements OnInit {
       this.header = title;
     })
     this.subscribeservice.userData.subscribe((user: string) => {
+      // console.log(user);
       if (user != null) {
         this.inboolean = false;
       }
     })
   }
 
+  logout(){
+    this.subscribeservice.setUserData(null);
+    this.inboolean = true;
+  }
+
   navigateLogin() {
     this.router.navigate(['../login'], { relativeTo: this.route }).catch();
+  }
+
+  navigateUpload() {
+    this.router.navigate(['../upload'], { relativeTo: this.route }).catch();
+  }
+
+  navigateHome() {
+    this.router.navigate(['../home'], { relativeTo: this.route }).catch();
+  }
+
+  navigateAbout() {
+    this.router.navigate(['../about'], { relativeTo: this.route }).catch();
+  }
+
+  navigateHeatmap() {
+    this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
   }
 
   signOut() {
