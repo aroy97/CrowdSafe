@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { AppService } from '../services/app.service';
 import { SubscribeService } from '../services/subscribe.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -22,19 +23,25 @@ export class UploadComponent implements OnInit {
   finalJson: {} = {};
   // errorMsg: boolean = false;
   currentId: number = 0;
+  userloader: boolean = false;
+  latitude: any;
+  longitude: any;
 
   constructor(
-    private http: HttpClient,
     public appservice: AppService,
-    public subscribeservice: SubscribeService
+    public subscribeservice: SubscribeService,
+    public router: Router,
+    private route: ActivatedRoute,
     ) { }
 
   ngOnInit() {
     this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
-    this.appservice.getPosition()
-    .then(pos=>
+    this.appservice
+    .getPosition().then( pos =>
     {
-      console.log(`Position: ${pos.lng} ${pos.lat}`);
+      this.latitude = `${pos.lat}`;
+      this.longitude = `${pos.lng}`;
+      console.log(this.longitude);
     }).catch((err: any) => {
       this.errorMsg = true;
       console.log(err);
@@ -43,8 +50,23 @@ export class UploadComponent implements OnInit {
 
   addPictures() {
     this.finalJson = {
-      "sellersPermitFile": this.sellersPermitString
+      "image": this.sellersPermitString,
+      "lat": this.latitude,
+      "long": this.longitude
     }
+    this.appservice
+        .uploadApi(this.finalJson
+        ).then((response: HttpResponse<any>) => {
+          console.log(response);
+          this.userloader = false;
+          if(response.status == 200) {
+            this.subscribeservice.setUserData(response.body['Name']);
+            this.subscribeservice.setToken(response.body['Token']);
+            this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
+          }
+        }).catch((err: any) => {
+          console.log(err);
+        })
     console.log(this.finalJson);
   }
 

@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppService {
 
-  private BASE_URL: string = "https://9d433566.ngrok.io";
+  private BASE_URL: string = "https://3c343656.ngrok.io";
   private username: string = 'Covid19';
   private password: string = 'Covid19';
   private usernamePassword: string = `${this.username}:${this.password}`;
@@ -31,6 +31,11 @@ export class AppService {
 
   async loginApi(credentials: any): Promise<any> {
     const url: string = `${this.BASE_URL}/login`;
+    return this.http.post(url, credentials, this.httpOptions).toPromise();
+  }
+
+  async uploadApi(credentials: any): Promise<any> {
+    const url: string = `${this.BASE_URL}/crowd_detection`;
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
 

@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
           }
         }).catch((err: any) => {
+          this.userloader = false;
           console.log(err);
         })
         this.clearfields();
