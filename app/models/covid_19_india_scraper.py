@@ -70,9 +70,9 @@ class WebScraper:
         return response.content
 
 
-if __name__ == "__main__":
-    obj = WebScraper()
-    content = obj.process_state_code_data()
-    state_code_map = obj.get_state_codes(content)
-    raw_data = obj.get_raw_data()
-    print(obj.get_statewise_data())
+# if __name__ == "__main__":
+#     obj = WebScraper()
+#     content = obj.process_state_code_data()
+#     state_code_map = obj.get_state_codes(content)
+#     raw_data = obj.get_raw_data()
+#     print(obj.get_statewise_data())
