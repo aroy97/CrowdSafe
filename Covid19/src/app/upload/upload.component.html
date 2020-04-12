@@ -11,12 +11,13 @@
   <div class="image-upload">
     <div class="input-title">Please select an Image to Upload</div>
 
-    <input class="image-input" (change)="picked($event,1)" type="file"  accept="image/*">
+    <input class="image-input" (change)="picked($event,1)" type="file"  accept="video/mp4,image/*">
 
     <br>
     <hr>
 
     <img [src]="imgURL" class="image-preview" height="200" *ngIf="imgURL">
+    <div *ngIf = "videoFlag" class="video">Video has been successfully uploaded. Press Submit</div>
 
     <br>
     <button [disabled]="submitEnable" class="butoncus_sig image-submit" id="dnext" (click)="addPictures()">Submit</button>
