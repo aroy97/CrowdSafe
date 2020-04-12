@@ -6,9 +6,12 @@
 <button (click)="onUpload()">Upload!</button> -->
 
 <p>Input one</p>
-<input (change)="picked($event,1)" type="file">
+
+<input (change)="picked($event,1)" type="file"  accept="image/*">
 
 <br>
 <hr>
 
 <button class="butoncus_sig" id="dnext" (click)="addPictures()">Submit</button>
+
+<img [src]="imgURL" height="200" *ngIf="imgURL">
