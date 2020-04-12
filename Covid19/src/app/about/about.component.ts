@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
   sellersPermitString: string;
   //json
   finalJson: {} = {};
-  errorMsg: boolean = false;
+  // errorMsg: boolean = false;
   currentId: number = 0;
 
   constructor(
