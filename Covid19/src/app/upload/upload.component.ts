@@ -16,6 +16,7 @@ export class UploadComponent implements OnInit {
   public imagePath;
   imgURL: any;
   imageSrc: any;
+  videoFlag: boolean = false;
   sellersPermitFile: any;
   //base64s
   sellersPermitString: string;
@@ -36,11 +37,13 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
     this.subscribeservice.userData.subscribe((user: string) => {
       // console.log(user);
+      // user = "a";
       if (user == null) {
         this.router.navigate(['../login'], { relativeTo: this.route }).catch();
       }
       else{
         this.subscribeservice.token.subscribe((tok: number) => {
+          // tok=5;
           this.tokenFlag = (tok>0)?true:false;
         });
         this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
@@ -82,16 +85,25 @@ export class UploadComponent implements OnInit {
   handleInputChange(files) {
     var file = files;
     this.submitEnable=true;
-    var pattern = /image-*/;
+    var pattern1 = /image-*/;
+    var pattern2 = /video-*/;
     var reader = new FileReader();
-    if (!file.type.match(pattern)) {
+    this.videoFlag = false;
+    this.imgURL = "";
+    if (!file.type.match(pattern1) && !file.type.match(pattern2)) {
       alert('invalid format');
       return;
     }
-    this.submitEnable=false;
-    reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+    if (file.type.match(pattern1)){
+      reader.onload = (_event) => { 
+        this.imgURL = reader.result; 
+      }
     }
+    else{
+      this.videoFlag = true;
+    }
+    this.submitEnable=false;
+    
     reader.onloadend = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
