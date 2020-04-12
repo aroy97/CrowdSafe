@@ -27,4 +27,5 @@ export class SubscribeService {
   setToken(tok: number) : void {
     this.token.next(tok);
   }
+
 }

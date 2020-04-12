@@ -28,7 +28,7 @@
                             See Cases Across India
                         </a>
                     </li>
-                    <li *ngIf="!inboolean" class="upload">
+                    <li  class="upload">
                         <a href="javascript:void(0)" (click) = "navigateUpload()">
                             Upload Image
                         </a>
@@ -43,5 +43,13 @@
     </div>
 </div>
 <div class="header-title">
-    {{header}}
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {{header}}
+        </div>
+        <div class="col-sm-4">
+            <span  *ngIf="tokenflag">Tokens Present : {{tokennumber}}</span>
+        </div>
+    </div>
 </div>

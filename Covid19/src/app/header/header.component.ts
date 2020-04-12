@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
   inboolean: boolean = true;
   header: string = "";
   userLogin: boolean = false;
-
+  public tokenflag: boolean = false;
+  public tokennumber: number;
 
   constructor(
     public subscribeservice: SubscribeService,
@@ -24,10 +25,14 @@ export class HeaderComponent implements OnInit {
     this.subscribeservice.header.subscribe((title: string) => {
       this.header = title;
     })
+    this.subscribeservice.token.subscribe((tok: number) => {
+      this.tokennumber = tok;
+    })
     this.subscribeservice.userData.subscribe((user: string) => {
       // console.log(user);
       if (user != null) {
         this.inboolean = false;
+        this.tokenflag = true;
       }
     })
   }
