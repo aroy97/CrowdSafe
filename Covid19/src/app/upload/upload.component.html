@@ -4,13 +4,24 @@
       <strong>Sorry!</strong> Please clear cache and allow device location.
     </div>
   </div>
-  <p>Input one</p>
+  <div>
+    <div class="about">
+      Help the community to stay safe by providing information regarding gathering of crowds .
+    </div>
+    <div class="image-upload">
+      <div class="input-title">Please select an Image to Upload</div>
   
-  <input (change)="picked($event,1)" type="file"  accept="image/*">
+      <input class="image-input" (change)="picked($event,1)" type="file"  accept="image/*">
   
-  <br>
-  <hr>
+      <br>
+      <hr>
   
-  <button class="butoncus_sig" id="dnext" (click)="addPictures()">Submit</button>
+      <img [src]="imgURL" class="image-preview" height="200" *ngIf="imgURL">
   
-  <img [src]="imgURL" height="200" *ngIf="imgURL">
+      <br>
+      <button [disabled]="submitEnable" class="butoncus_sig image-submit" id="dnext" (click)="addPictures()">Submit</button>
+    </div>
+    <div class="disclaimer">
+      <span>NOTE:</span> Please note that submission of inappropriate images will lead to deduction in number of tokens.
+    </div>
+  </div>

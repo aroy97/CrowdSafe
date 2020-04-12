@@ -10,11 +10,27 @@ import { SubscribeService } from '../services/subscribe.service';
 export class HeatmapComponent implements AfterViewInit {
 
   heatMapData = [
-    {location: new google.maps.LatLng(22.573, 88.364), weight: 0.1},
-    {location: new google.maps.LatLng(22.574, 88.365), weight: 0.2},
-    {location: new google.maps.LatLng(22.575, 88.366), weight: 0.3},
-    {location: new google.maps.LatLng(22.576, 88.367), weight: 0.4},
-    {location: new google.maps.LatLng(22.577, 88.368), weight: 1.5},
+    {location: new google.maps.LatLng(22.570, 88.364), weight: 10},
+    {location: new google.maps.LatLng(22.571, 88.365), weight: 20},
+    {location: new google.maps.LatLng(22.572, 88.366), weight: 30},
+    {location: new google.maps.LatLng(22.573, 88.367), weight: 30},
+    {location: new google.maps.LatLng(22.574, 88.368), weight: 30},
+    {location: new google.maps.LatLng(22.575, 88.368), weight: 30},
+    {location: new google.maps.LatLng(22.576, 88.368), weight: 30},
+    {location: new google.maps.LatLng(22.577, 88.365), weight: 30},
+    {location: new google.maps.LatLng(22.578, 88.367), weight: 30},
+    {location: new google.maps.LatLng(22.579, 88.366), weight: 30},
+    {location: new google.maps.LatLng(22.580, 88.364), weight: 30},
+    {location: new google.maps.LatLng(22.584, 88.365), weight: 30},
+    {location: new google.maps.LatLng(22.585, 88.367), weight: 30},
+    {location: new google.maps.LatLng(22.583, 88.365), weight: 30},
+    {location: new google.maps.LatLng(22.581, 88.364), weight: 30},
+    {location: new google.maps.LatLng(22.569, 88.376), weight: 30},
+    {location: new google.maps.LatLng(22.570, 88.374), weight: 30},
+    {location: new google.maps.LatLng(22.564, 88.375), weight: 30},
+    {location: new google.maps.LatLng(22.565, 88.377), weight: 30},
+    {location: new google.maps.LatLng(22.563, 88.375), weight: 30},
+    {location: new google.maps.LatLng(22.561, 88.374), weight: 30},
   ];
   kolkata = new google.maps.LatLng(22.5726, 88.3639);
   // marker = new google.maps.Marker({
