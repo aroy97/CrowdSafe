@@ -34,8 +34,8 @@ export class HeatMapData {
 
     constructor(data: any) {
         this.location = new google.maps.LatLng(parseFloat(data['Latitude']),parseFloat(data['Longitude']));
-        // this.weight = data['Weight'];
-        this.weight = 40;
+        this.weight = data['Weight'];
+
     }
 }
 
