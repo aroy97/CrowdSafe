@@ -18,10 +18,10 @@ import * as FusionMaps from "fusionmaps/fusioncharts.maps";
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import * as India from 'fusioncharts/maps/fusioncharts.india';
 import { HeatmapComponent } from './heatmap/heatmap.component';
-import { AboutComponent } from './about/about.component';
 import { SymptomsComponent } from './symptoms/symptoms.component';
 import { TestingComponent } from './testing/testing.component';
 import { UploadComponent } from './upload/upload.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -36,10 +36,10 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
     RegisterComponent,
     MainpageComponent,
     HeatmapComponent,
-    AboutComponent,
     SymptomsComponent,
     TestingComponent,
-    UploadComponent
+    UploadComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,
