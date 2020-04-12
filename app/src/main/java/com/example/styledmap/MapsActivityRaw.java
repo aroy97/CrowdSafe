@@ -12,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -112,7 +114,7 @@ public class MapsActivityRaw extends AppCompatActivity
                 .fillColor(0x220000ff));
     }
 
-    private void plotThrets(GoogleMap googleMap) {
+    private void plotThrets(final GoogleMap googleMap) {
         try {
             ObjectMapper mapper= new ObjectMapper();
             InputStream in = getResources().openRawResource(R.raw.data);
@@ -144,15 +146,24 @@ public class MapsActivityRaw extends AppCompatActivity
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
-                double lat = Double.parseDouble(jsonObject.get("Latitute").toString());
-                double lang = Double.parseDouble(jsonObject.get("Longitude").toString());
+                final double lat = Double.parseDouble(jsonObject.get("Latitute").toString());
+                final double lang = Double.parseDouble(jsonObject.get("Longitude").toString());
                 Log.d("aa",lat+"--"+lang);
                 googleMap.addCircle(new CircleOptions()
                         .center(new LatLng(lat,lang))
-                        .radius(5000)
+                        .radius(getServerity(jsonObject.get("Grade").toString()))
                         .strokeWidth(1)
                         .strokeColor(getMyColor(jsonObject.get("Grade").toString()))
-                        .fillColor(getMyColor(jsonObject.get("Grade").toString())));
+                        .fillColor(getMyColorBorder(jsonObject.get("Grade").toString())).clickable(true));
+                googleMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
+                    @Override
+                    public void onCircleClick(Circle circle) {
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lang)));
+                        circle.setRadius(5000);
+                    }
+                });
+
+
 
             }
 
@@ -169,6 +180,35 @@ public class MapsActivityRaw extends AppCompatActivity
         }
     }
 
+
+    private int getMyColorBorder(String grade) {
+        int color = 0;
+        switch (grade) {
+            case HIGH:
+                color = 0xff0000; //RED
+
+                break;
+            case MILD:
+                color = 0xff9900;//ORANGE
+
+
+                break;
+            case MEDIUM:
+                color = 0xffe100;//YELLOW
+
+                break;
+            case LOW:
+                color = 0x0040ff;//BLUE
+
+                break;
+            default:
+                color = 0x2bff00;//GREEN
+
+                break;
+        }
+        return  color;
+
+    }
     private int getMyColor(String grade) {
         int color = 0;
         switch (grade) {
@@ -202,24 +242,24 @@ public class MapsActivityRaw extends AppCompatActivity
         int color = 0;
         switch (grade) {
             case HIGH:
-                color = 0x22ff0000; //RED
+                color = 5*5000;
 
                 break;
             case MILD:
-                color = 0x22ff9900;//ORANGE
+                color = 4*5000;
 
 
                 break;
             case MEDIUM:
-                color = 0x22ffe100;//YELLOW
+                color = 3*5000;
 
                 break;
             case LOW:
-                color = 0x220040ff;//BLUE
+                color = 2*5000;
 
                 break;
             default:
-                color = 0x222bff00;//GREEN
+                color = 5000;
 
                 break;
         }
