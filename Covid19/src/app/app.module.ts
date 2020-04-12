@@ -22,7 +22,6 @@ import { AboutComponent } from './about/about.component';
 import { SymptomsComponent } from './symptoms/symptoms.component';
 
 
-
 FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
 
 @NgModule({
