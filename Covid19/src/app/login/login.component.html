@@ -1,4 +1,10 @@
 <ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: false }"></ngx-loading>
+<div *ngIf = "errorFlag">
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        {{errorMsg}}
+    </div>
+</div>
 <div class="loginUI">
     <div class="row">
         <div class="title col-sm-12" style="text-align: center;">
@@ -19,7 +25,7 @@
             <div class="form-group col-sm-12">
                 <div class="row">
                     <label class="control-label col-sm-2" for="pwd">Password:</label>
-                    <div class="col-sm-10">          
+                    <div class="col-sm-8">          
                     <input class="form-control" type="password" [(ngModel)]="password" placeholder="Enter Password" [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="col-sm-2"></div>

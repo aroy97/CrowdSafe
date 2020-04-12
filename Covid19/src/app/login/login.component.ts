@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   phoneNumber: string = '';
   password: string = '';
   userloader: boolean = false;
+  errorFlag: boolean = false;
+  errorMsg: string = "";
 
   constructor(
     public appservice: AppService,
@@ -40,6 +42,8 @@ export class LoginComponent implements OnInit {
           "password": sha256(this.password)
         }
         this.userloader = true;
+        this.errorFlag = false;
+        this.errorMsg = "";
         this.appservice
         .loginApi(payload
         ).then((response: HttpResponse<any>) => {
@@ -50,8 +54,15 @@ export class LoginComponent implements OnInit {
             this.subscribeservice.setToken(response.body['Token']);
             this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
           }
+          else if(response.status == 204){
+            this.errorFlag = true;
+            this.errorMsg = "Authentication Failed";
+          }
         }).catch((err: any) => {
           console.log(err);
+          this.userloader = false;
+          this.errorMsg = "Authentication Failed";
+          this.errorFlag = true;
         })
         this.clearfields();
       }

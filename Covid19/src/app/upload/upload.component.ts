@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppService } from '../services/app.service';
 import { SubscribeService } from '../services/subscribe.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -22,23 +23,38 @@ export class UploadComponent implements OnInit {
   finalJson: {} = {};
   // errorMsg: boolean = false;
   currentId: number = 0;
+  tokenFlag: boolean = false;
 
   constructor(
     private http: HttpClient,
     public appservice: AppService,
-    public subscribeservice: SubscribeService
+    public subscribeservice: SubscribeService,
+    public router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
-    this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
-    this.appservice.getPosition()
-    .then(pos=>
-    {
-      console.log(`Position: ${pos.lng} ${pos.lat}`);
-    }).catch((err: any) => {
-      this.errorMsg = true;
-      console.log(err);
+    this.subscribeservice.userData.subscribe((user: string) => {
+      // console.log(user);
+      if (user == null) {
+        this.router.navigate(['../login'], { relativeTo: this.route }).catch();
+      }
+      else{
+        this.subscribeservice.token.subscribe((tok: number) => {
+          this.tokenFlag = (tok>0)?true:false;
+        });
+        this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
+        this.appservice.getPosition()
+        .then(pos=>
+        {
+          console.log(`Position: ${pos.lng} ${pos.lat}`);
+        }).catch((err: any) => {
+          this.errorMsg = true;
+          console.log(err);
+        })
+      }
     })
+    
   }
 
   addPictures() {
