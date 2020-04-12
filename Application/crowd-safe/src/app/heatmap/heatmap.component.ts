@@ -1,16 +1,16 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { SubscribeService } from '../services/subscribe.service';
-import { AppService } from '../services/app.service';
 import { HeatMapData } from '../models/models';
+import { AppService } from '../services/app.service';
 import { HttpResponse } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-heatmap',
+  templateUrl: './heatmap.component.html',
+  styleUrls: ['./heatmap.component.scss']
 })
-export class Tab1Page  implements AfterViewInit{
+export class HeatmapComponent implements AfterViewInit {
 
   userloader: boolean = false;
   heatMapData: HeatMapData[] = [];
@@ -28,12 +28,9 @@ export class Tab1Page  implements AfterViewInit{
   constructor(
     public subscribeservice: SubscribeService,
     public appservice: AppService,
-    public router: Router,
-    private route: ActivatedRoute,
     ) { }
 
   ngAfterViewInit() {
-    this.router.navigate(['../../../login'], { relativeTo: this.route }).catch();
     this.subscribeservice.setHeader('Heat Map of Infected Regions Across India');
     this.userloader = true;
     this.appservice.gatherHeatMapDataApi()
@@ -68,5 +65,4 @@ export class Tab1Page  implements AfterViewInit{
     });
     heatmap.setMap(map);
    }
-
 }

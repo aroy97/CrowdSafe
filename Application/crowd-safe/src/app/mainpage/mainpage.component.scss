@@ -1,0 +1,52 @@
+.india-map-desktop{
+    margin-bottom: 150px;
+    .data-table{
+        padding-left: 8%;
+        table{
+            width: 100%;
+            overflow-y:scroll;
+            height:530px;
+            display:block;
+            td, th{
+                text-align: center;
+            }
+            th{
+                vertical-align: middle;
+            }
+            tr:nth-child(2){
+                background-color: burlywood;
+            }
+        }
+    }
+}
+.india-map-mobile{
+    margin-bottom: 150px;
+    .data-table{
+        padding-left: 8%;
+        table{
+            width: 100%;
+            overflow-y:scroll;
+            height:530px;
+            display:block;
+            td, th{
+                text-align: center;
+            }
+            th{
+                vertical-align: middle;
+            }
+            tr:nth-child(2){
+                background-color: burlywood;
+            }
+        }
+    }
+}
+@media (min-width: 1450px){
+    .india-map-mobile{
+        display: none;
+    }
+}
+@media (max-width: 1449px){
+    .india-map-desktop{
+        display: none;
+    }
+}

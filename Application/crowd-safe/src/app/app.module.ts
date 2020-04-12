@@ -11,9 +11,23 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RegisterComponent } from './register/register.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { HeatmapComponent } from './heatmap/heatmap.component';
+import { UploadComponent } from './upload/upload.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionMaps from "fusionmaps/fusioncharts.maps";
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+import * as India from 'fusioncharts/maps/fusioncharts.india';
+
+FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
+
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, UploadComponent, MainpageComponent, HeatmapComponent, HeaderComponent, FooterComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgxLoadingModule.forRoot({}), HttpClientModule, CommonModule,
     BrowserModule,
@@ -21,7 +35,8 @@ import { CommonModule } from '@angular/common';
     RouterModule.forRoot([]),
     NgxLoadingModule.forRoot({}),
     FormsModule,
-    HttpClientModule],
+    HttpClientModule,
+    FusionChartsModule],
   providers: [
     StatusBar,
     SplashScreen,

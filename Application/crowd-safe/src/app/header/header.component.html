@@ -1,0 +1,55 @@
+<div class="yellow-bar">
+</div>
+<div class="row header-first">
+    <div class="col-sm-2">
+        <img class="logo" src="../../assets/Final_Logo.jpeg">
+    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            <div class="col-sm-10 header-links">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" (click) = "navigateAbout()">
+                            About COVID-19
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" (click) = "navigateHeatmap()">
+                            See Heat-Map
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            Know COVID symptoms
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" (click) = "navigateHome()">
+                            See Cases Across India
+                        </a>
+                    </li>
+                    <li  class="upload">
+                        <a href="javascript:void(0)" (click) = "navigateUpload()">
+                            Upload Image
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-2">
+                <button *ngIf="inboolean" class="header-btn" (click) = "navigateLogin()">Sign In</button>
+                <button *ngIf="!inboolean" class="header-btn" (click) = "logout()">Sign Out</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header-title">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            {{header}}
+        </div>
+        <div class="col-sm-4">
+            <span  *ngIf="tokenflag">Tokens Present : {{tokennumber}}</span>
+        </div>
+    </div>
+</div>
