@@ -34,6 +34,21 @@ export class AppService {
     return this.http.post(url, credentials, this.httpOptions).toPromise();
   }
 
+  getPosition(): Promise<any>
+  {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+        },
+        err => {
+          reject(err);
+        });
+    });
+
+  }
+  
   async gatherDataApi(): Promise<any> {
     const url: string = `${this.BASE_URL}/state_data`;
     return this.http.get(url, this.httpOptions).toPromise();
@@ -83,18 +98,18 @@ export class AppService {
     // ]
   }
 
-  getPosition(): Promise<any>
-  {
-    return new Promise((resolve, reject) => {
+  // getPosition(): Promise<any>
+  // {
+  //   return new Promise((resolve, reject) => {
 
-      navigator.geolocation.getCurrentPosition(resp => {
+  //     navigator.geolocation.getCurrentPosition(resp => {
 
-          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
-        },
-        err => {
-          reject(err);
-        });
-    });
+  //         resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+  //       },
+  //       err => {
+  //         reject(err);
+  //       });
+  //   });
 
-  }
+  // }
 }

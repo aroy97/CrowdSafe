@@ -25,7 +25,6 @@ import { UploadComponent } from './upload/upload.component';
 
 
 
-
 FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
 
 @NgModule({

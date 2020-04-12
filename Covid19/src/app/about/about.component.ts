@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SubscribeService } from '../services/subscribe.service';
 import { AppService } from '../services/app.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { AppService } from '../services/app.service';
 })
 export class AboutComponent implements OnInit {
 
-  // selectedFile: File;
+  submitEnable: boolean = true;
+  errorMsg: boolean = false;
   public imagePath;
   imgURL: any;
   imageSrc: any;
@@ -18,15 +20,17 @@ export class AboutComponent implements OnInit {
   sellersPermitString: string;
   //json
   finalJson: {} = {};
-  errorMsg: boolean = false;
+  // errorMsg: boolean = false;
   currentId: number = 0;
 
   constructor(
     private http: HttpClient,
     public appservice: AppService,
+    public subscribeservice: SubscribeService
     ) { }
 
   ngOnInit() {
+    this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
     this.appservice.getPosition()
     .then(pos=>
     {
@@ -36,25 +40,6 @@ export class AboutComponent implements OnInit {
       console.log(err);
     })
   }
-
-  // onFileChanged(event: any) {
-  //   this.selectedFile = event.target.files[0];
-  //   console.log(this.selectedFile);
-  // }
-
-  // onUpload() {
-  //   // this.http is the injected HttpClient
-  //   const uploadData = new FormData();
-  //   uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
-  //   console.log(uploadData);
-  //   // this.http.post('my-backend.com/file-upload', uploadData, {
-  //   //   reportProgress: true,
-  //   //   observe: 'events'
-  //   // })
-  //   //   .subscribe(event => {
-  //   //     console.log(event); // handle event here
-  //   //   });
-  // }
 
   addPictures() {
     this.finalJson = {
@@ -80,15 +65,14 @@ export class AboutComponent implements OnInit {
 
   handleInputChange(files) {
     var file = files;
+    this.submitEnable=true;
     var pattern = /image-*/;
     var reader = new FileReader();
     if (!file.type.match(pattern)) {
       alert('invalid format');
       return;
     }
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(file); 
+    this.submitEnable=false;
     reader.onload = (_event) => { 
       this.imgURL = reader.result; 
     }
