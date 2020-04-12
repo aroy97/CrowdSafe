@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   otpFromApi: string = '';
   otpValidate : boolean = false;
   registerflag: boolean = false;
+  errorflag: boolean = false;
+  errorMsg: string = "";
 
 
   constructor(
@@ -47,8 +49,8 @@ export class RegisterComponent implements OnInit {
       else{
         let payload: {};
         payload = {
-          "name": this.phonenumber,
-          "user": this.email,
+          "name": this.email,
+          "user": this.phonenumber,
           "password": sha256(this.password)
         }
         this.userloader = true;
@@ -82,14 +84,18 @@ export class RegisterComponent implements OnInit {
         ).then((response: HttpResponse<any>) => {
           this.userloader = false;
           if (response.status == 200) {
+            this.errorflag = false;
             this.otpFromApi = response.body['OTP'];
             this.otpValidate = true;
-          } else if (response.status == 409) {
-            alert('Email already exists');
-            this.email = "";
           }
         }).catch((err: any) => {
           this.userloader = false;
+          if (err['status'] == 409) {
+            this.errorMsg = err['error']['OTP'];
+            this.errorflag = true;
+            this.email = "";
+          }
+
           console.log(err);
         })
       } else {
