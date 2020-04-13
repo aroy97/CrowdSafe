@@ -164,11 +164,12 @@ public class UploadActivity extends AppCompatActivity {
                     progress.setMessage("Getting Location..... ");
                     progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     progress.setIndeterminate(true);
+                    progress.show();
                     if (getLocation()) {
                         progress.setMessage("Uploading file..... ");
                         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                         progress.setIndeterminate(true);
-
+                        progress.show();
                         Log.d("aa","ll44");
                         uploadImg(dp_file, latitude, longitude);
                     }

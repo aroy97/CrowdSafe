@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -106,12 +107,7 @@ public class MapsActivityRaw extends AppCompatActivity
         googleMap.setOnMyLocationButtonClickListener(this);
         googleMap.setOnMyLocationClickListener(this);
         plotThrets(googleMap);
-        googleMap.addCircle(new CircleOptions()
-                .center(new LatLng(22.57,88.36))
-                .radius(5000)
-                .strokeWidth(1)
-                .strokeColor(Color.BLUE)
-                .fillColor(0x220000ff));
+
     }
 
     private void plotThrets(final GoogleMap googleMap) {
@@ -143,22 +139,34 @@ public class MapsActivityRaw extends AppCompatActivity
 
             for(int i = 0; i<jsonArray.length(); i++)
             {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                final JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
                 final double lat = Double.parseDouble(jsonObject.get("Latitute").toString());
                 final double lang = Double.parseDouble(jsonObject.get("Longitude").toString());
+
+
                 Log.d("aa",lat+"--"+lang);
+
+                double radius = getServerity(jsonObject.get("Grade").toString());
+
                 googleMap.addCircle(new CircleOptions()
                         .center(new LatLng(lat,lang))
-                        .radius(getServerity(jsonObject.get("Grade").toString()))
+                        .radius(radius)
                         .strokeWidth(1)
-                        .strokeColor(getMyColor(jsonObject.get("Grade").toString()))
-                        .fillColor(getMyColorBorder(jsonObject.get("Grade").toString())).clickable(true));
+                        .strokeColor(getMyColorBorder(jsonObject.get("Grade").toString()))
+                        .fillColor(getMyColor(jsonObject.get("Grade").toString())).clickable(true));
+
                 googleMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
                     @Override
                     public void onCircleClick(Circle circle) {
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lang)));
+
+                        String title  = getDanger(circle.getRadius());
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(circle.getCenter(),12.0f));
+                        googleMap.addMarker(new MarkerOptions()
+                                .title(title)
+                                .position(circle.getCenter()));
+
                         circle.setRadius(5000);
                     }
                 });
@@ -167,16 +175,26 @@ public class MapsActivityRaw extends AppCompatActivity
 
             }
 
-            /*HeatArray heatAr = mapper.readValue(br.readLine(), HeatArray.class);
-
-            for(Heat h: heatAr.getHeatArrray())
-            {
-
-
-            }*/
-
         } catch (IOException | JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private String getDanger(double radius) {
+        if(radius == 10*5000)
+        {
+            return "HIGH ALERT";
+        }else if(radius == 8*5000)
+        {
+            return "MEDIUM ALERT";
+        }else if(radius == 6*50000)
+        {
+            return  "MILD ALERT";
+        }else if(radius == 4.*50000)
+        {
+            return "LOW ALERT";
+        }else {
+            return  "NO ALERT";
         }
     }
 
@@ -185,24 +203,24 @@ public class MapsActivityRaw extends AppCompatActivity
         int color = 0;
         switch (grade) {
             case HIGH:
-                color = 0xff0000; //RED
+                color = Color.RED; //RED
 
                 break;
             case MILD:
-                color = 0xff9900;//ORANGE
+                color = Color.RED;//ORANGE
 
 
                 break;
             case MEDIUM:
-                color = 0xffe100;//YELLOW
+                color = Color.YELLOW;//YELLOW
 
                 break;
             case LOW:
-                color = 0x0040ff;//BLUE
+                color = Color.BLUE;//BLUE
 
                 break;
             default:
-                color = 0x2bff00;//GREEN
+                color = Color.GREEN;//GREEN
 
                 break;
         }
@@ -242,20 +260,20 @@ public class MapsActivityRaw extends AppCompatActivity
         int color = 0;
         switch (grade) {
             case HIGH:
-                color = 5*5000;
+                color = 10*5000;
 
                 break;
             case MILD:
-                color = 4*5000;
+                color = 8*5000;
 
 
                 break;
             case MEDIUM:
-                color = 3*5000;
+                color = 6*5000;
 
                 break;
             case LOW:
-                color = 2*5000;
+                color = 4*5000;
 
                 break;
             default:
