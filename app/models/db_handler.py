@@ -77,7 +77,7 @@ class DBHandler:
 
     def increment_token(self, phone):
         status = 1
-        query = 'UPDATE user SET token = token + 1 WHERE phone = "' + phone + '";'
+        query = 'UPDATE user SET token = token + 1 WHERE name = "' + phone + '";'
         try:
             self.execute_query(query)
         except ConnectionError:
@@ -86,7 +86,7 @@ class DBHandler:
 
     def decrement_token(self, phone):
         status = 1
-        query = 'UPDATE user SET token = token - 2 WHERE phone = "' + phone + '";'
+        query = 'UPDATE user SET token = token - 2 WHERE name = "' + phone + '";'
         try:
             self.execute_query(query)
         except ConnectionError:

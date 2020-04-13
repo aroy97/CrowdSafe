@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           console.log(response);
           this.userloader = false;
           if(response.status == 200) {
-            this.subscribeservice.setUserData(this.phoneNumber);
+            this.subscribeservice.setUserData(response.body['Name']);
             this.subscribeservice.setToken(response.body['Token']);
             this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
           }

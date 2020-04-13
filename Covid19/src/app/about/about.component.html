@@ -1,1 +1,65 @@
-<p>about works!</p>
+<div class="row">
+    <div class="col-sm-12">
+<p>
+<h1>Objective</h1>
+The only suggestive measure to COVID-19 till date has been Social Distancing. 
+We look forward to implementing a visionary model that would proctor gatherings as well as alert the respective authority/user. 
+To add on we would make it user friendly we plan to deploy the same in a PWA alongside an Android Application with some added features which may turn out to be helpful these days such as route optimization 
+(for the people who needs to go out inevitably) based on affected heat map and crowdsourcing, real-time tracking of the location of affected areas and timely alerts and notification push. The detailed view is as follows:
+<br>
+<br>
+<h1>Computer Vision Model</h1>
+The proposed application will use TensorFlow’s Object Detection Model to detect crowd gatherings. 
+Using the object detection API, we can detect the number of people in an image and if that count is greater than some threshold then the corresponding authorities will be informed along with the location. 
+TensorFlow’s object detection API is already pre-trained so there is no overhead of creating a separate dataset for training and since the dataset is already trained it can be used to detect objects (persons) from live video. 
+However, handling videos will become very bulky so we will use snapshots of images every 30secs from the video feed. For both the android, and web app version, the photograph will be analyzed in the server and if the result is above the threshold, a warning would be set off.
+<br>
+<br>
+<h1>WebApp</h1>
+The website will allow users to upload their video from the CCTV from where we will take two frames per minute i.e. 1 in every 30 seconds. 
+The images will be sent to the backend for analysis and after risk assessment, the heat map will be updated according to the nature of the crowd. 
+A notification will be sent to the users using the Android App regarding a possible crowd in the location on a real-time basis. 
+Using constant video clips will allow the government agencies to track the overall situation throughout the course of a day. 
+Also, the user can click a photograph and send it for risk assessment along with its location. 
+<br>
+To make the webapp complete there will be separate sections for real-time infected, recovered and death data across India and basic knowledge on Corona virus and its symptoms.
+
+In addition to this to keep a check on the faulty submission of image by users we will be using a token system. 
+Each time a user registers he/she will be given 5 virtual tokens. Every time a correct submission is done 1 token will be credited to the user and in case of faulty submission 1 token will be debited. 
+Once the token runs out the user will be blacklisted and cannot upload any more images.
+<br>
+<br>
+<h1>Android App</h1>
+The application will allow users to take photographs using their mobile camera to capture scenes where there is a crowd of people. 
+Then the photograph will be analyzed using a machine learning model to understand the nature of the crowd (size, distance within) and then after risk assessment, 
+a warning will be set off and the location and nature of the crowd will be uploaded to our servers and all the devices who are using our system will get notified about a possible crowd in a particular location on a real-time basis. This could also help the administration and other govt agencies to trace people and their movement if and when required.
+<br>
+<br>
+<h1>Future Scope</h1>
+In the future, we plan to scrape data from social networking sites like Facebook, Twitter and use Natural Language Processing 
+to gather information regarding crowd gatherings. If those tweets/posts contain images/videos they can be processed in the same way. 
+In this way a dataset will be created of past gatherings along with the location of the gathering and number of people present. 
+Using the already available data of location of corona virus patients the areas which might be affected next can be detected.
+<br><br><br>
+<div style="text-align: left;">
+<h1>Team</h1>
+<ul>
+<li>Srijan Nag</li>
+<br>
+<li>Akash Roy</li>
+<br>
+<li>Amrita Das</li>
+<br>
+<li>Sayak Banerjee</li>
+<br>
+<li>Subhayan Bhattacharya</li>
+<br>
+<li>Aishik Deb</li>
+<br>
+<li>Suranjan Daw</li>
+<br>
+<li>Souhardya Adhikary</li>
+</ul>
+</div>
+</div>
+</div>

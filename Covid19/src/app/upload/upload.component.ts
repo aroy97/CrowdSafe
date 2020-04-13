@@ -44,6 +44,8 @@ export class UploadComponent implements OnInit {
     this.subscribeservice.userData.subscribe((user: string) => {
       // console.log(user);
       // user = "a";
+      this.user = user;
+      console.log(user);
       if (user == null) {
         this.router.navigate(['../login'], { relativeTo: this.route }).catch();
       }
@@ -53,9 +55,7 @@ export class UploadComponent implements OnInit {
           this.tokenFlag = (tok>0)?true:false;
         });
         this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
-        this.subscribeservice.userData.subscribe((data: string) => {
-          this.user = data;
-        })
+        
         this.appservice.getPosition()
         .then(pos=>
         {
