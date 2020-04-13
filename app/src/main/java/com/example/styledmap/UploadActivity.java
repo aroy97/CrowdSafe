@@ -46,10 +46,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -272,6 +280,51 @@ public class UploadActivity extends AppCompatActivity {
 
 
     }
+
+    private void uploadToServer(String path) {
+
+        String baseUrl = "";
+        Uri file = Uri.fromFile(new File(path));
+
+        File original = new File(path);
+
+        RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, "image1");
+
+        RequestBody filePart = RequestBody.create(
+                MediaType.parse(getContentResolver().getType(file)),
+                original
+        );
+
+
+        MultipartBody.Part file1 = MultipartBody.Part.createFormData("photo",original.getName(), filePart);
+
+
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create()).build();
+
+        ApiEndpoint apiEndpoint = retrofit.create(ApiEndpoint.class);
+
+
+        Call<ResponseBody> call = apiEndpoint.uploadPhoto(descriptionPart, file1);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.isSuccessful())
+                {
+                    Toast.makeText(UploadActivity.this, "Upload SuccessFull", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+    }
+
 
     private String getFileName() {
         //return time in millies
