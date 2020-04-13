@@ -20,3 +20,22 @@ To add on we would make it user friendly we plan to deploy the same in a Web-App
 - Firebase
 - GPS
 
+# Quickstart
+## Prerequisites
+- NodeJs
+- Angular
+- Flask API
+- sqlite3 DB
+- Tensorflow
+- Protobuf
+## Setting up the python environment
+1. Run `pip install -r requirements.txt`
+2. Run `python runserver.py`
+## Installation For Webapp
+1. Run `npm install -g @angular/cli` 
+2. Browse into Covid19 folder, run `npm install` to download other dependencies required. Then run `npm install fusioncharts` followed by `npm install fusionmaps`.
+3. Download fusioncharts.india.js file from the official website of fusioncharts and add it to the folder node_modules/fusioncharts/maps
+4. Run `ng serve`
+This should get the webapp up and running.
+## Android App:
+The app uses firebase for data storage and authentication. The apk for installation is available.
