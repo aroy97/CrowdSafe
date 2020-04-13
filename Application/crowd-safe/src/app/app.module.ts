@@ -17,6 +17,7 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
 import { UploadComponent } from './upload/upload.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MenuComponent } from './menu/menu.component'
 import * as FusionCharts from 'fusioncharts';
 import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionMaps from "fusionmaps/fusioncharts.maps";
@@ -27,7 +28,7 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, UploadComponent, MainpageComponent, HeatmapComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent, MenuComponent, UploadComponent, MainpageComponent, HeatmapComponent, HeaderComponent, FooterComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgxLoadingModule.forRoot({}), HttpClientModule, CommonModule,
     BrowserModule,
