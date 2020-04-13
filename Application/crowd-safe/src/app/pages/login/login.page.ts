@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { sha256 } from 'js-sha256';
-import { AppService } from '../services/app.service';
-import { SubscribeService } from '../services/subscribe.service';
+import { AppService } from '../../services/app.service';
+import { SubscribeService } from '../../services/subscribe.service';
 
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
 
   phoneNumber: string = '';
   password: string = '';

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
 import { NgxLoadingModule } from 'ngx-loading';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -8,13 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './register/register.component';
-import { MainpageComponent } from './mainpage/mainpage.component';
-import { HeatmapComponent } from './heatmap/heatmap.component';
-import { UploadComponent } from './upload/upload.component';
+import { RegisterComponent } from './register/register.component';;
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 // import { MenuComponent } from './menu/menu.component'
@@ -28,12 +24,11 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, UploadComponent, MainpageComponent, HeatmapComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, RegisterComponent, HeaderComponent, FooterComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgxLoadingModule.forRoot({}), HttpClientModule, CommonModule,
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot([]),
     NgxLoadingModule.forRoot({}),
     FormsModule,
     HttpClientModule,

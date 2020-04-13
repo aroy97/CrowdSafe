@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SubscribeService } from '../services/subscribe.service';
-import { AppService } from '../services/app.service';
+import { SubscribeService } from '../../services/subscribe.service';
+import { AppService } from '../../services/app.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ResourceLoader } from '@angular/compiler';
-import * as $ from 'jquery';
 import { HttpResponse } from '@angular/common/http';
-import { StateData, StateMapData } from '../models/models';
+import { StateData, StateMapData } from '../../models/models';
 
 const dataset = [{
   "id": "035",
@@ -63,10 +61,10 @@ const dataset = [{
 
 @Component({
   selector: 'app-mainpage',
-  templateUrl: './mainpage.component.html',
-  styleUrls: ['./mainpage.component.scss']
+  templateUrl: './mainpage.page.html',
+  styleUrls: ['./mainpage.page.scss']
 })
-export class MainpageComponent implements OnInit {
+export class MainpagePage implements OnInit {
 
   dataSource: Object;
   id: number = 0;
@@ -92,15 +90,12 @@ export class MainpageComponent implements OnInit {
       if (response.status != 200) {
         this.error = true;
       } else {
-        console.log(response);
         response.body.forEach((stateData: any) => {
           let statemodel : StateData = new StateData(stateData);
           let stateMapModel : StateMapData = new StateMapData(stateData);
           this.stateFullData.push(statemodel);
           this.stateMapFullData.push(stateMapModel);
         });
-        console.log(this.stateFullData);
-        console.log(this.stateMapFullData);
         this.dataSource = {
           "chart": {
           // "caption": "Coronavirus Infection Risk Map",
@@ -122,19 +117,9 @@ export class MainpageComponent implements OnInit {
       console.log(err);
     })
   }
-  gotoState(event: any) {
-    this.id = (event['dataObj']['id']);
-    this.subscribeservice.setId(this.id);
-    console.log(this.id);
-    this.router.navigate(['../home'], { relativeTo: this.route }).catch();
-    // location.reload();
-    // this.chartCreated.dispose();
-    
-  }
 
   initializedMap(event: any) {
     this.chartCreated = event.chart;
-    console.log(this.chartCreated);
     
   }
 
