@@ -1,0 +1,46 @@
+.register{
+    form{
+        margin-bottom: 200px;
+        margin-left: 14%;
+        .form-register{
+            text-align: center;
+            .register-button{
+                min-width: 80px;
+                min-height: 34px;
+                background-color: #FFCB05;
+                border: none;
+                border-radius: 8%;
+                font-weight: 700;
+                color: #004C6C;
+            }
+        }
+    }
+}
+.title {
+    padding: 4px 15px;
+    // padding-left: 15%;
+    background-color: aliceblue;
+    margin-bottom: 13px;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }

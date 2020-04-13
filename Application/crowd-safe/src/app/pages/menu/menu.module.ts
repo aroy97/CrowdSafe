@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoginPage } from '../login/login.page';
 import { IonicModule } from '@ionic/angular';
 import { NgxLoadingModule } from 'ngx-loading';
 import { MenuPageRoutingModule } from './menu-routing.module';

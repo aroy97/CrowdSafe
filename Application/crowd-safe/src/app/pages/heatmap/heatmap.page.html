@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>heatmap</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: true }"></ngx-loading>
+  <div #mapContainer id="map"></div>
+</ion-content>

@@ -1,4 +1,11 @@
-<div *ngIf = "errorMsg">
+<ion-header>
+  <ion-toolbar>
+    <ion-title>upload</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf = "errorMsg">
     <div class="alert">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
       <strong>Sorry!</strong> Please clear cache and allow device location.
@@ -29,3 +36,4 @@
 <div class="notoken" *ngIf = "!tokenFlag">
   Since you have exhausted your tokens you will not be able to upload images any further.
 </div>
+</ion-content>
