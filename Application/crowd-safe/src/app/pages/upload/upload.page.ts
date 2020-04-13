@@ -38,8 +38,6 @@ export class UploadPage implements OnInit {
 
   ngOnInit() {
     this.subscribeservice.userData.subscribe((user: string) => {
-      // console.log(user);
-      // user = "a";
       if (user == null) {
         this.router.navigate(['../login'], { relativeTo: this.route }).catch();
       }

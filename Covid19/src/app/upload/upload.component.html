@@ -1,8 +1,15 @@
+<ngx-loading [show]="userloader" [config]="{fullScreenBackdrop: true }"></ngx-loading>
 <div *ngIf = "errorMsg">
     <div class="alert">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
       <strong>Sorry!</strong> Please clear cache and allow device location.
     </div>
+</div>
+<div *ngIf = "successMsg">
+  <div class="alert-success">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    {{successMsg}}
+  </div>
 </div>
 <div *ngIf = "tokenFlag"> 
   <div class="about">

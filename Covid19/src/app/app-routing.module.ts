@@ -7,6 +7,7 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
 import { AboutComponent } from './about/about.component';
 import { TestingComponent } from './testing/testing.component';
 import { UploadComponent } from './upload/upload.component';
+import { SymptomsComponent } from './symptoms/symptoms.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'heatmap', component: HeatmapComponent },
   { path: 'about', component: AboutComponent },
   { path: 'testing', component: TestingComponent },
-  { path: 'upload', component: UploadComponent }
+  { path: 'upload', component: UploadComponent },
+  { path: 'symptoms', component: SymptomsComponent }
 
 ];
 
