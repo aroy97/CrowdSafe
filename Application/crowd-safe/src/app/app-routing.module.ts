@@ -6,7 +6,8 @@ const routes: Routes = [
   //   path: '',
   //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   // },
-  { path: '', loadChildren: './pages/menu/menu.module#MenuPageModule'},
+  { path: '', redirectTo: 'menu', pathMatch: 'full'},
+  { path: '', loadChildren: './pages/menu/menu.module#MenuPageModule'}
 
 
 
