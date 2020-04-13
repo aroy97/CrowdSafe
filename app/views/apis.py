@@ -115,6 +115,10 @@ def crowd_detection_video():
         ob = ObjectDetection(filepath)
         person_count = max(ob.driver())
         status = DBHandler().insert_value('heatmap', [str(payload['lat']), str(payload['long']), str(person_count)])
+        if max(person_count) <= 3:
+            DBHandler().decrement_token(payload['user'])
+        else:
+            DBHandler().increment_token(payload['user'])
         if status:
             response = ({'Person Count': str(person_count)}, http.HTTPStatus.OK)
         else:
@@ -163,6 +167,10 @@ def crowd_detection():
         ob = ObjectDetection(filename[:filename.rfind('/')])
         person_count = max(ob.driver())
         status = DBHandler().insert_value('heatmap', [str(payload['lat']), str(payload['long']), str(person_count)])
+        if max(person_count) <= 3:
+            DBHandler().decrement_token(payload['user'])
+        else:
+            DBHandler().increment_token(payload['user'])
         if status:
             response = ({'Person Count': str(person_count)}, http.HTTPStatus.OK)
         else:
