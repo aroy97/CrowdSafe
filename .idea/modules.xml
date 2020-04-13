@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-CODE_COVID.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-CODE_COVID.iml" />
       <module fileurl="file://$PROJECT_DIR$/CODE_COVID.iml" filepath="$PROJECT_DIR$/CODE_COVID.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/CODE_COVID-app.iml" filepath="$PROJECT_DIR$/app/CODE_COVID-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
