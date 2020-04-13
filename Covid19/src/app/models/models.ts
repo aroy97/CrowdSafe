@@ -28,16 +28,6 @@ export class StateMapData {
     }
 }
 
-export class HeatMapData {
-    location: google.maps.LatLng;
-    weight: number;
-
-    constructor(data: any) {
-        this.location = new google.maps.LatLng(parseFloat(data['Latitude']),parseFloat(data['Longitude']));
-        this.weight = data['Weight'];
-
-    }
-}
 
 export enum IdToStateName {
     '000' = 'India',

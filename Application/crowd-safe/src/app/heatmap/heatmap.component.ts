@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { SubscribeService } from '../services/subscribe.service';
-import { HeatMapData } from '../models/models';
 import { AppService } from '../services/app.service';
 import { HttpResponse } from '@angular/common/http';
 
@@ -10,14 +9,16 @@ import { HttpResponse } from '@angular/common/http';
   templateUrl: './heatmap.component.html',
   styleUrls: ['./heatmap.component.scss']
 })
-export class HeatmapComponent implements AfterViewInit {
+export class HeatmapComponent {
 
   userloader: boolean = false;
-  heatMapData: HeatMapData[] = [];
-  heatmapData: any;
+  heatMapData: any[] = [];
+  latitude: any;
+  longitude: any;
+  errorMsg: boolean = false;
 
 
-  kolkata = new google.maps.LatLng(22.5726, 88.3639);
+  userlocation: any;
   // marker = new google.maps.Marker({
   //   position: this.coordinates,
   //   map: this.map,
@@ -28,26 +29,39 @@ export class HeatmapComponent implements AfterViewInit {
   constructor(
     public subscribeservice: SubscribeService,
     public appservice: AppService,
-    ) { }
+    ) {
+      this.userloader = true;
+      this.appservice.gatherHeatMapDataApi()
+      .then((response: HttpResponse<any>) => {
+        this.userloader = false;
+        if (response.status == 200) {
+          response.body.forEach((data: any) => {
+            let tempData = {
+              location: new google.maps.LatLng(Number(data['Latitude']),Number(data['Longitude'])),
+              weight: 30
+            }
+            this.heatMapData.push(tempData);
+            this.appservice.getPosition()
+            .then(pos => {
+              this.latitude = `${pos.lat}`;
+              this.longitude = `${pos.lng}`;
+              this.userlocation = new google.maps.LatLng(Number(this.latitude),Number(this.longitude));
+              this.ngInitManual();
+            }).catch((err: any) => {
+              this.userlocation = new google.maps.LatLng(22.5726, 88.3639);
+              this.ngInitManual();
+              console.log(err);
+            })
+          });
+        }
+      }).catch((err: any) => {
+        this.userloader = false;
+        console.log(err)
+      })
+    }
 
-  ngAfterViewInit() {
+  ngInitManual() {
     this.subscribeservice.setHeader('Heat Map of Infected Regions Across India');
-    this.userloader = true;
-    this.appservice.gatherHeatMapDataApi()
-    .then((response: HttpResponse<any>) => {
-      this.userloader = false;
-      if (response.status == 200) {
-        response.body.forEach((data: any) => {
-          let tempData: HeatMapData = new HeatMapData(data);
-          this.heatMapData.push(tempData);
-        });
-        console.log(this.heatMapData);
-        console.log(this.kolkata);
-      }
-    }).catch((err: any) => {
-      this.userloader = false;
-      console.log(err)
-    })
     this.mapInitializer();
   }
 
@@ -56,7 +70,7 @@ export class HeatmapComponent implements AfterViewInit {
     // this.mapOptions);
     // this.marker.setMap(this.map);
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: this.kolkata,
+      center: this.userlocation,
       zoom: 13,
       mapTypeId: 'roadmap'
     });
