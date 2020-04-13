@@ -1,15 +1,15 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { SubscribeService } from '../services/subscribe.service';
-import { AppService } from '../services/app.service';
+import { SubscribeService } from '../../services/subscribe.service';
+import { AppService } from '../../services/app.service';
 import { HttpResponse } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-heatmap',
-  templateUrl: './heatmap.component.html',
-  styleUrls: ['./heatmap.component.scss']
+  templateUrl: './heatmap.page.html',
+  styleUrls: ['./heatmap.page.scss']
 })
-export class HeatmapComponent {
+export class HeatmapPage {
 
   userloader: boolean = false;
   heatMapData: any[] = [];
