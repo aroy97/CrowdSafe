@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 12 21:05:58 2020
-
-@author: Amrita
-"""
-
 import numpy as np
 import os
 import six.moves.urllib as urllib
@@ -105,7 +98,7 @@ class object_detection:
         output_dict['detection_boxes'],
         output_dict['detection_classes'],
         output_dict['detection_scores'],
-        category_index,
+        self.category_index,
         instance_masks=output_dict.get('detection_masks_reframed', None),
         use_normalized_coordinates=True,
         line_thickness=8)
