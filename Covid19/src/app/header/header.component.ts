@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   inboolean: boolean = true;
-  header: string = "";
+  header: string = "About the Project";
   userLogin: boolean = false;
   public tokenflag: boolean = false;
   public tokennumber: number;
