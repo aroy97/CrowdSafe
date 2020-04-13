@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Apr 12 21:05:58 2020
-
-@author: Amrita
-"""
-
 import numpy as np
 import os
 import six.moves.urllib as urllib
@@ -35,10 +28,10 @@ class object_detection:
   count_person=[]
   def __init__(self):
     # List of the strings that is used to add correct label for each box.
-    self.PATH_TO_LABELS = 'models/research/object_detection/data/mscoco_label_map.pbtxt'
+    self.PATH_TO_LABELS = 'C:/Tensorflow1/models/research/object_detection/data/mscoco_label_map.pbtxt'
     self.category_index = label_map_util.create_category_index_from_labelmap(self.PATH_TO_LABELS, use_display_name=True)
     # If you want to test the code with your images, just add path to the images to the TEST_IMAGE_PATHS.
-    self.PATH_TO_TEST_IMAGES_DIR = pathlib.Path('models/research/object_detection/test_images/Crowd/')
+    self.PATH_TO_TEST_IMAGES_DIR = pathlib.Path('C:/Tensorflow1/models/research/object_detection/test_images/Crowd/')
     self.TEST_IMAGE_PATHS = sorted(list(self.PATH_TO_TEST_IMAGES_DIR.glob("*.jpg")))
     print(self.TEST_IMAGE_PATHS)
     model_name = 'faster_rcnn_resnet101_coco_2018_01_28'
@@ -105,7 +98,7 @@ class object_detection:
         output_dict['detection_boxes'],
         output_dict['detection_classes'],
         output_dict['detection_scores'],
-        category_index,
+        self.category_index,
         instance_masks=output_dict.get('detection_masks_reframed', None),
         use_normalized_coordinates=True,
         line_thickness=8)
