@@ -28,10 +28,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
-    GoogleApiClient mGoogleApiClient;
+    FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
-    private static final int RC_SIGN_IN = 9001;
+    private static final int RC_SIGN_IN = 234;
     private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +38,34 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Authenticating...");
         progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(false);
 
-        auth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         findViewById(R.id.google_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, RC_SIGN_IN);
+                /*Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);*/
+                signIn();
             }
         });
 
+    }
+    private void signIn() {
+        //getting the google signin intent
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+
+        //starting the activity for result
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -88,38 +98,29 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        //Log.d("aa", "firebaseAuthWithGoogle:" + acct.getIdToken());
+        //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
+        //getting the auth credential
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        auth.signInWithCredential(credential)
+
+        //Now using firebase we are signing in the user here
+        mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            //Log.d("aa", "signInWithCredential:success");
-                            FirebaseUser user = auth.getCurrentUser();
+                            //Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
 
-                            String name = "";
-                            try {
-                                name = user.getDisplayName();
-                                //createUserAccountInDB();
-                                progressDialog.cancel();
-                                final String currentFirebaseUser=FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                updateUI();
-
-                            } catch (NullPointerException n) {
-                                showToast("fail");
-                                n.printStackTrace();
-                            }
-
-                            Toast.makeText(LoginActivity.this, name, Toast.LENGTH_LONG).show();
-
+                            Toast.makeText(LoginActivity.this, "User Signed In"+user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                            progressDialog.cancel();
+                            updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
+                            //Log.w(TAG, "signInWithCredential:failure", task.getException());
                             progressDialog.cancel();
-                            //Log.w("aa", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
 
                         }
 
