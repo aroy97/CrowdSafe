@@ -15,4 +15,8 @@ To add on we would make it user friendly we plan to deploy the same in a Web-App
 - Google Maps Javascript API
 - FusionCharts Development Module
 - Flask Framework
+- Android Framework
+- Google Map SDSK
+- Firebase
+- GPS
 
