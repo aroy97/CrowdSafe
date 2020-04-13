@@ -6,17 +6,16 @@ import cv2
 class ImageView:
 
     def __init__(self, video_string):
-        with open('../images/video2.txt', 'w') as wfile:
-            wfile.write(video_string)
-        uu.decode('../images/video2.txt', '../images/video.mp4')
-        self.vidcap = cv2.VideoCapture('../images/video.mp4')
+        with open('./app/images/video.mp4', 'wb') as wfile:
+            wfile.write(base64.decodebytes(bytes(video_string, 'utf-8')))
+        # uu.decode('./app/images/video2.txt', './app/images/video.mp4')
+        self.vidcap = cv2.VideoCapture('./app/images/video.mp4')
 
     def getFrame(self, sec, count):
         self.vidcap.set(cv2.CAP_PROP_POS_MSEC, sec * 1000)
         hasFrames, image =self.vidcap.read()
-        print(hasFrames)
         if hasFrames:
-            cv2.imwrite("../images/image." + str(count) + ".jpg", image)  # save frame as JPG file
+            cv2.imwrite("./app/images/image." + str(count) + ".jpg", image)  # save frame as JPG file
         return hasFrames
 
     def process_image(self):

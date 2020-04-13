@@ -62,6 +62,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
   }
 
+  nagigateSymptoms() {
+    this.router.navigate(['../symptoms'], { relativeTo: this.route }).catch();
+  }
+
   signOut() {
     this.subscribeservice.setUserData(null);
   }

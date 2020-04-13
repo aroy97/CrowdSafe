@@ -71,7 +71,7 @@ export class HeatmapPage {
     // this.marker.setMap(this.map);
     var map = new google.maps.Map(document.getElementById('map'), {
       center: this.userlocation,
-      zoom: 13,
+      zoom: 9,
       mapTypeId: 'roadmap'
     });
     var heatmap = new google.maps.visualization.HeatmapLayer({

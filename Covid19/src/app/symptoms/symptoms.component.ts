@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubscribeService } from '../services/subscribe.service';
 
 @Component({
   selector: 'app-symptoms',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SymptomsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public subscribeservice: SubscribeService
+  ) { }
 
   ngOnInit() {
+    this.subscribeservice.setHeader('Covid19 Symptoms');
   }
 
 }
