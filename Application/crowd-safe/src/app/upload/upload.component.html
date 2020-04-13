@@ -1,0 +1,31 @@
+<div *ngIf = "errorMsg">
+    <div class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+      <strong>Sorry!</strong> Please clear cache and allow device location.
+    </div>
+</div>
+<div *ngIf = "tokenFlag"> 
+  <div class="about">
+    Help the community to stay safe by providing information regarding gathering of crowds .
+  </div>
+  <div class="image-upload">
+    <div class="input-title">Please select an Image to Upload</div>
+
+    <input class="image-input" (change)="picked($event,1)" type="file"  accept="video/mp4,image/*">
+
+    <br>
+    <hr>
+
+    <img [src]="imgURL" class="image-preview" height="200" *ngIf="imgURL">
+    <div *ngIf = "videoFlag" class="video">Video has been successfully uploaded. Press Submit</div>
+
+    <br>
+    <button [disabled]="submitEnable" class="butoncus_sig image-submit" id="dnext" (click)="addPictures()">Submit</button>
+  </div>
+  <div class="disclaimer">
+    <span>NOTE:</span> Please note that submission of inappropriate images will lead to deduction in number of tokens.
+  </div>
+</div>
+<div class="notoken" *ngIf = "!tokenFlag">
+  Since you have exhausted your tokens you will not be able to upload images any further.
+</div>
