@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { AppService } from '../services/app.service';
-import { SubscribeService } from '../services/subscribe.service';
+import { AppService } from '../../services/app.service';
+import { SubscribeService } from '../../services/subscribe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  templateUrl: './upload.page.html',
+  styleUrls: ['./upload.page.scss']
 })
-export class UploadComponent implements OnInit {
+export class UploadPage implements OnInit {
 
   submitEnable: boolean = true;
   errorMsg: boolean = false;
