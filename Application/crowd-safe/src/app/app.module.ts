@@ -23,6 +23,7 @@ import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionMaps from "fusionmaps/fusioncharts.maps";
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import * as India from 'fusioncharts/maps/fusioncharts.india';
+import { LoginPage } from './pages/login/login.page'
 
 FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
 
@@ -33,7 +34,6 @@ FusionChartsModule.fcRoot(FusionCharts, FusionMaps, India, FusionTheme);
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgxLoadingModule.forRoot({}), HttpClientModule, CommonModule,
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot([]),
     NgxLoadingModule.forRoot({}),
     FormsModule,
     HttpClientModule,

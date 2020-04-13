@@ -11,12 +11,20 @@ const routes: Routes = [
   //   path: '',
   //   loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   // },
-  { path: '', redirectTo: 'heatmap', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'home', component: MainpageComponent },
-  { path: 'heatmap', component: HeatmapComponent },
-  { path: 'upload', component: UploadComponent }
+  { path: '', loadChildren: './pages/menu/menu.module#MenuPageModule'},
+  // { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule'},
+  // { path: 'register', component: RegisterComponent },
+  // { path: 'home', component: MainpageComponent },
+  // { path: 'heatmap', component: HeatmapComponent },
+  // { path: 'upload', component: UploadComponent },
+  // {
+  //   path: 'menu',
+  //   loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
+  // },
+  // {
+  //   path: 'login',
+  //   loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  // }
 ];
 @NgModule({
   imports: [
