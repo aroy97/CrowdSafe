@@ -5,6 +5,12 @@
       <strong>Sorry!</strong> Please clear cache and allow device location.
     </div>
 </div>
+<div *ngIf = "successMsg">
+  <div class="alert-success">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    {{successMsg}}
+  </div>
+</div>
 <div *ngIf = "tokenFlag"> 
   <div class="about">
     Help the community to stay safe by providing information regarding gathering of crowds .
