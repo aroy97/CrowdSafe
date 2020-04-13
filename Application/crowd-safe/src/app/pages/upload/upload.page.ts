@@ -39,13 +39,13 @@ export class UploadPage implements OnInit {
   ngOnInit() {
     this.subscribeservice.userData.subscribe((user: string) => {
       // console.log(user);
-      user = "a";
+      // user = "a";
       if (user == null) {
         this.router.navigate(['../login'], { relativeTo: this.route }).catch();
       }
       else{
         this.subscribeservice.token.subscribe((tok: number) => {
-          tok=5;
+          // tok=5;
           this.tokenFlag = (tok>0)?true:false;
         });
         this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
