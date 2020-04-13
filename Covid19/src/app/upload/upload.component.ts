@@ -70,17 +70,20 @@ export class UploadComponent implements OnInit {
       "lat": this.latitude,
       "long": this.longitude
     }
+    this.userloader = true;
     this.appservice
         .uploadApi(this.finalJson
         ).then((response: HttpResponse<any>) => {
           console.log(response);
           this.userloader = false;
           if(response.status == 200) {
+            this.userloader = false;
             this.subscribeservice.setUserData(response.body['Name']);
             this.subscribeservice.setToken(response.body['Token']);
             this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
           }
         }).catch((err: any) => {
+          this.userloader = false;
           console.log(err);
         })
     console.log(this.finalJson);
