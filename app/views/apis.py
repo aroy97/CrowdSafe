@@ -2,7 +2,7 @@ import base64
 import http
 import json
 import random
-
+import os
 from app.models.image_processing import ImageView
 from app.models.notification_service import Notification
 from flask_cors import CORS
@@ -11,6 +11,7 @@ from flask_basicauth import BasicAuth
 
 from app.models.covid_19_india_scraper import WebScraper
 from app.models.db_handler import DBHandler
+from object_detection.model import ObjectDetection
 
 app = Flask(__name__)
 CORS(app)
@@ -103,14 +104,28 @@ def state_data():
     return response
 
 
-@app.route("/get_images", methods=['POST'])
-def get_images():
+@app.route("/crowd_detection_video", methods=['POST'])
+def crowd_detection_video():
     payload = request.get_json()
     status, message = ImageView(payload['video_string']).process_image()
     if status == 0:
         response = ({'Error': message}, http.HTTPStatus.CONFLICT)
     else:
-        response = ({'Message': message}, http.HTTPStatus.OK)
+        filepath = './app/images/'
+        ob = ObjectDetection(filepath)
+        person_count = max(ob.driver())
+        status = DBHandler().insert_value('heatmap', [str(payload['lat']), str(payload['long']), str(person_count)])
+        if max(person_count) <= 3:
+            DBHandler().decrement_token(payload['user'])
+        else:
+            DBHandler().increment_token(payload['user'])
+        if status:
+            response = ({'Person Count': str(person_count)}, http.HTTPStatus.OK)
+        else:
+            response = ({'Message': 'Could not update Database'}, http.HTTPStatus.CONFLICT)
+        for file in os.listdir(filepath):
+            if file.endswith('.jpg'):
+                os.remove(filepath+file)
     return response
 
 
@@ -144,14 +159,26 @@ def crowd_detection():
     payload = request.get_json()
     image_string = payload['image']
     randint = random.randint(100000, 999999)
-    filename = './app/images/tmpImage' + str(randint) + '.jpg'
+    filename = 'app/images/tmpImage' + str(randint) + '.jpg'
     response = ({'Message': 'Processing'}, http.HTTPStatus.OK)
     try:
         with open(filename, "wb") as fh:
             fh.write(base64.decodebytes(bytes(image_string, 'utf-8')))
-        print(DBHandler().insert_value('heatmap', [str(payload['lat']), str(payload['long']), str(random.randint(1, 11))]))
+        ob = ObjectDetection(filename[:filename.rfind('/')])
+        person_count = max(ob.driver())
+        status = DBHandler().insert_value('heatmap', [str(payload['lat']), str(payload['long']), str(person_count)])
+        if max(person_count) <= 3:
+            DBHandler().decrement_token(payload['user'])
+        else:
+            DBHandler().increment_token(payload['user'])
+        if status:
+            response = ({'Person Count': str(person_count)}, http.HTTPStatus.OK)
+        else:
+            response = ({'Message': 'Could not update Database'}, http.HTTPStatus.CONFLICT)
+        os.remove(filename)
     except Exception as e:
-        response = ({'Error': 'Error'}, http.HTTPStatus.OK)
+        os.remove(filename)
+        response = ({'Error': 'Error'}, http.HTTPStatus.CONFLICT)
     return response
 
 
@@ -189,7 +216,7 @@ def update_heatmap_state():
 @app.route("/delete", methods=['GET'])
 def delete():
     obj = DBHandler()
-    obj.execute_query('DROP TABLE heatmap')
+    obj.execute_query('DELETE FROM  user')
     return "True"
 
 
