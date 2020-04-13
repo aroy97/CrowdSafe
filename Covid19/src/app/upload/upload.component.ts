@@ -28,6 +28,10 @@ export class UploadComponent implements OnInit {
   latitude: any;
   longitude: any;
   tokenFlag: boolean = false;
+  personCount: any;
+  user: string;
+  successMsg: string;
+  successFlag: boolean = false;
 
   constructor(
     public appservice: AppService,
@@ -49,6 +53,9 @@ export class UploadComponent implements OnInit {
           this.tokenFlag = (tok>0)?true:false;
         });
         this.subscribeservice.setHeader('Upload Images on Crowd Gathering');
+        this.subscribeservice.userData.subscribe((data: string) => {
+          this.user = data;
+        })
         this.appservice.getPosition()
         .then(pos=>
         {
@@ -65,28 +72,60 @@ export class UploadComponent implements OnInit {
   }
 
   addPictures() {
-    this.finalJson = {
-      "image": this.sellersPermitString,
-      "lat": this.latitude,
-      "long": this.longitude
-    }
-    this.appservice
-        .uploadApi(this.finalJson
-        ).then((response: HttpResponse<any>) => {
-          console.log(response);
+    this.userloader = true;
+    if (this.videoFlag == false) {
+      this.finalJson = {
+        "image": this.sellersPermitString,
+        "lat": this.latitude,
+        "long": this.longitude,
+        "user": this.user
+      }
+      this.appservice
+      .uploadApi(this.finalJson
+      ).then((response: HttpResponse<any>) => {
+        console.log(response);
+        this.userloader = false;
+        if(response.status == 200) {
+          this.successFlag = true;
           this.userloader = false;
-          if(response.status == 200) {
-            this.subscribeservice.setUserData(response.body['Name']);
-            this.subscribeservice.setToken(response.body['Token']);
-            this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
-          }
-        }).catch((err: any) => {
-          console.log(err);
-        })
+          this.successMsg = response.body['Person Count'];
+          // this.personCount = response.body.
+          // this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
+        }
+      }).catch((err: any) => {
+        this.userloader = false;
+        this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
+        console.log(err);
+      })
+    } else {
+      this.finalJson = {
+        "video_string": this.sellersPermitString,
+        "lat": this.latitude,
+        "long": this.longitude,
+        "user": this.user
+      }
+      this.appservice
+      .uploadVideoApi(this.finalJson
+      ).then((response: HttpResponse<any>) => {
+        console.log(response);
+        this.userloader = false;
+        if(response.status == 200) {
+          this.userloader = false;
+          this.successFlag = true;
+          this.successMsg = response.body['Person Count'];
+          // this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
+        }
+      }).catch((err: any) => {
+        this.userloader = false;
+        this.router.navigate(['../heatmap'], { relativeTo: this.route }).catch();
+        console.log(err);
+      })
+    }
     console.log(this.finalJson);
   }
 
   public picked(event, field) {
+    console.log(event);
     this.currentId = field;
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
