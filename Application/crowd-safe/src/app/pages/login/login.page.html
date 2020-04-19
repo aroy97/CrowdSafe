@@ -1,7 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button>
+        </ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      CrowdSafe
+      Login Page
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -47,7 +51,8 @@
             </div>
             <div class="form-group register_redirect">
                 <div class="col-sm-12">
-                    Not registered yet? &nbsp;<a href="javascript:void(0);" (click)="navigateRegister()">Click here to Register</a>
+                    Not registered yet? &nbsp;
+                    <a href="javascript:void(0);" (click)="navigateRegister()">Click here to Register</a>
                 </div>
             </div>
         </form>

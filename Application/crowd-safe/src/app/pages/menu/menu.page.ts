@@ -11,23 +11,23 @@ export class MenuPage implements OnInit {
   pages = [
     {
       title : 'Login Page',
-      url : '/login'
+      url : '/menu/login'
     },
     {
       title : 'Register Page',
-      url : '/register'
+      url : '/menu/register'
     },
     {
       title : 'Upload Page',
-      url : '/upload'
+      url : '/menu/upload'
     },
     {
       title : 'HeatMap Page',
-      url : '/heatmap'
+      url : '/menu/heatmap'
     },
     {
       title : 'Main Page',
-      url : '/mainpage'
+      url : '/menu/mainpage'
     }
   ]
 

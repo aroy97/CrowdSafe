@@ -79,7 +79,7 @@ export class LoginPage implements OnInit {
   }
 
   navigateRegister() {
-    this.router.navigate(['../register'], { relativeTo: this.route }).catch();
+    this.router.navigate(['/menu/register'], { relativeTo: this.route }).catch();
   }
 
 }
