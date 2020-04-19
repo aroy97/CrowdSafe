@@ -28,6 +28,10 @@ const routes: Routes = [
     {
       path: 'mainpage',
       loadChildren: () => import('../mainpage/mainpage.module').then( m => m.MainpagePageModule)
+    },
+    {
+      path: '',
+      loadChildren: () => import('../login/login.module').then( m => m.LoginPageModule)
     }
   ]
 }, 
